@@ -1,4 +1,4 @@
-# CodeByZach Name Parser
+# Name Parser
 
 <!--
 [![Build Status](https://travis-ci.org/theiconic/name-parser.svg?branch=master&t=201705161308)](https://travis-ci.org/theiconic/name-parser)
