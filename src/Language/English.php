@@ -24,7 +24,7 @@ class English implements LanguageInterface
         'v' => 'V',
         'vi' => 'VI',
         'vii' => 'VII',
-        'vii' => 'VIII',
+        'viii' => 'VIII',
         'ix' => 'IX',
         'x' => 'X',
         'apr' => 'APR',
