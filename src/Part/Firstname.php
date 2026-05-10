@@ -1,6 +1,6 @@
 <?php
 
-namespace TheIconic\NameParser\Part;
+namespace CodeByZach\NameParser\Part;
 
 class Firstname extends GivenNamePart
 {

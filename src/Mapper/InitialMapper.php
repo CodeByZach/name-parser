@@ -1,9 +1,9 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace CodeByZach\NameParser\Mapper;
 
-use TheIconic\NameParser\Part\AbstractPart;
-use TheIconic\NameParser\Part\Initial;
+use CodeByZach\NameParser\Part\AbstractPart;
+use CodeByZach\NameParser\Part\Initial;
 
 /**
  * single letter, possibly followed by a period

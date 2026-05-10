@@ -1,6 +1,6 @@
 <?php
 
-namespace TheIconic\NameParser;
+namespace CodeByZach\NameParser;
 
 interface LanguageInterface
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace CodeByZach\NameParser\Mapper;
 
-use TheIconic\NameParser\Part\AbstractPart;
-use TheIconic\NameParser\Part\Salutation;
+use CodeByZach\NameParser\Part\AbstractPart;
+use CodeByZach\NameParser\Part\Salutation;
 
 class SalutationMapper extends AbstractMapper
 {

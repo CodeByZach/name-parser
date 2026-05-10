@@ -1,9 +1,13 @@
 {
-    "name": "theiconic/name-parser",
+    "name": "codebyzach/name-parser",
     "description": "PHP library for parsing a string containing a full name into its parts",
     "type": "library",
     "license": "MIT",
     "authors": [
+        {
+            "name": "Zachary Miller",
+            "email": "codebyzach@gmail.com"
+        },
         {
             "name": "The Iconic",
             "email": "engineering@theiconic.com.au"
@@ -19,7 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "TheIconic\\NameParser\\": ["src/", "tests/"]
+            "CodeByZach\\NameParser\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\CodeByZach\\NameParser\\": "tests/"
         }
     }
 }

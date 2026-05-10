@@ -1,6 +1,6 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace Tests\CodeByZach\NameParser\Mapper;
 
 use PHPUnit\Framework\TestCase;
 

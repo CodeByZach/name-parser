@@ -1,14 +1,14 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace CodeByZach\NameParser\Mapper;
 
-use TheIconic\NameParser\LanguageInterface;
-use TheIconic\NameParser\Part\AbstractPart;
-use TheIconic\NameParser\Part\Lastname;
-use TheIconic\NameParser\Part\LastnamePrefix;
-use TheIconic\NameParser\Part\Nickname;
-use TheIconic\NameParser\Part\Salutation;
-use TheIconic\NameParser\Part\Suffix;
+use CodeByZach\NameParser\LanguageInterface;
+use CodeByZach\NameParser\Part\AbstractPart;
+use CodeByZach\NameParser\Part\Lastname;
+use CodeByZach\NameParser\Part\LastnamePrefix;
+use CodeByZach\NameParser\Part\Nickname;
+use CodeByZach\NameParser\Part\Salutation;
+use CodeByZach\NameParser\Part\Suffix;
 
 class LastnameMapper extends AbstractMapper
 {

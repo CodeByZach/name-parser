@@ -1,11 +1,11 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace Tests\CodeByZach\NameParser\Mapper;
 
-use TheIconic\NameParser\Language\English;
-use TheIconic\NameParser\Part\Salutation;
-use TheIconic\NameParser\Part\Firstname;
-use TheIconic\NameParser\Part\Lastname;
+use CodeByZach\NameParser\Language\English;
+use CodeByZach\NameParser\Part\Salutation;
+use CodeByZach\NameParser\Part\Firstname;
+use CodeByZach\NameParser\Part\Lastname;
 
 class SalutationMapperTest extends AbstractMapperTest
 {

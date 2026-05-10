@@ -1,15 +1,15 @@
 <?php
 
-namespace TheIconic\NameParser;
+namespace CodeByZach\NameParser;
 
-use TheIconic\NameParser\Language\English;
-use TheIconic\NameParser\Mapper\NicknameMapper;
-use TheIconic\NameParser\Mapper\SalutationMapper;
-use TheIconic\NameParser\Mapper\SuffixMapper;
-use TheIconic\NameParser\Mapper\InitialMapper;
-use TheIconic\NameParser\Mapper\LastnameMapper;
-use TheIconic\NameParser\Mapper\FirstnameMapper;
-use TheIconic\NameParser\Mapper\MiddlenameMapper;
+use CodeByZach\NameParser\Language\English;
+use CodeByZach\NameParser\Mapper\NicknameMapper;
+use CodeByZach\NameParser\Mapper\SalutationMapper;
+use CodeByZach\NameParser\Mapper\SuffixMapper;
+use CodeByZach\NameParser\Mapper\InitialMapper;
+use CodeByZach\NameParser\Mapper\LastnameMapper;
+use CodeByZach\NameParser\Mapper\FirstnameMapper;
+use CodeByZach\NameParser\Mapper\MiddlenameMapper;
 
 class Parser
 {

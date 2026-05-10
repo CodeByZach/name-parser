@@ -64,7 +64,7 @@ More than 60 different successfully parsed name patterns can be found in the
 
 ## Setup
 ```$xslt
-composer require theiconic/name-parser
+composer require codebyzach/name-parser
 ```
 
 ## Usage
@@ -73,7 +73,7 @@ composer require theiconic/name-parser
 ```php
 <?php
 
-$parser = new TheIconic\NameParser\Parser();
+$parser = new CodeByZach\NameParser\Parser();
 
 $name = $parser->parse($input);
 
@@ -125,27 +125,27 @@ echo $name->getFullName(); // J. Peter M. Schluter
 
 ### Setting Languages
 ```php
-$parser = new TheIconic\NameParser\Parser([
-    new TheIconic\NameParser\Language\English(), //default
-    new TheIconic\NameParser\Language\German(),
+$parser = new CodeByZach\NameParser\Parser([
+    new CodeByZach\NameParser\Language\English(), //default
+    new CodeByZach\NameParser\Language\German(),
 ])
 ```
 
 ### Setting nickname delimiters
 ```php
-$parser = new TheIconic\NameParser\Parser();
+$parser = new CodeByZach\NameParser\Parser();
 $parser->setNicknameDelimiters(['(' => ')']);
 ```
 
 ### Setting whitespace characters
 ```php
-$parser = new TheIconic\NameParser\Parser();
+$parser = new CodeByZach\NameParser\Parser();
 $parser->setWhitespace("\t _.");
 ```
 
 ### Limiting the position of salutations
 ```php
-$parser = new TheIconic\NameParser\Parser();
+$parser = new CodeByZach\NameParser\Parser();
 $parser->setMaxSalutationIndex(2);
 ```
 This will require salutations to appear within the
@@ -156,7 +156,7 @@ the first half of the name parts.
 
 ### Adjusting combined initials support
 ```php
-$parser = new TheIconic\NameParser\Parser();
+$parser = new CodeByZach\NameParser\Parser();
 $parser->setMaxCombinedInitials(3);
 ```
 Combined initials are combinations of several

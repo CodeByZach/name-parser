@@ -1,6 +1,6 @@
 <?php
 
-namespace TheIconic\NameParser\Part;
+namespace Tests\CodeByZach\NameParser\Part;
 
 use phpmock\phpunit\PHPMock;
 use PHPUnit\Framework\TestCase;

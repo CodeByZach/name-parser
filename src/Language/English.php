@@ -1,8 +1,8 @@
 <?php
 
-namespace TheIconic\NameParser\Language;
+namespace CodeByZach\NameParser\Language;
 
-use TheIconic\NameParser\LanguageInterface;
+use CodeByZach\NameParser\LanguageInterface;
 
 class English implements LanguageInterface
 {
