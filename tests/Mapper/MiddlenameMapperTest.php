@@ -6,7 +6,6 @@ use CodeByZach\NameParser\Mapper\MiddlenameMapper;
 use CodeByZach\NameParser\Part\Firstname;
 use CodeByZach\NameParser\Part\Lastname;
 use CodeByZach\NameParser\Part\Middlename;
-use CodeByZach\NameParser\Part\Salutation;
 
 class MiddlenameMapperTest extends AbstractMapperTestCase
 {
@@ -88,7 +87,7 @@ class MiddlenameMapperTest extends AbstractMapperTestCase
                     new Middlename('Tiberius'),
                 ],
                 'arguments' => [
-                    true
+                    true,
                 ],
             ],
         ];

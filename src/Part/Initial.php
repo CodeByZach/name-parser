@@ -6,8 +6,6 @@ class Initial extends GivenNamePart
 {
     /**
      * uppercase the initial
-     *
-     * @return string
      */
     public function normalize(): string
     {

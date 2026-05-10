@@ -2,6 +2,4 @@
 
 namespace CodeByZach\NameParser\Part;
 
-class Middlename extends GivenNamePart
-{
-}
+class Middlename extends GivenNamePart {}

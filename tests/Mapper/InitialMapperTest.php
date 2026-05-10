@@ -2,7 +2,6 @@
 
 namespace Tests\CodeByZach\NameParser\Mapper;
 
-use CodeByZach\NameParser\Language\English;
 use CodeByZach\NameParser\Mapper\InitialMapper;
 use CodeByZach\NameParser\Part\Initial;
 use CodeByZach\NameParser\Part\Lastname;
@@ -55,17 +54,17 @@ class InitialMapperTest extends AbstractMapperTestCase
             [
                 'input' => [
                     'James',
-                    'B'
+                    'B',
                 ],
                 'expectation' => [
                     'James',
-                    'B'
+                    'B',
                 ],
             ],
             [
                 'input' => [
                     'James',
-                    'B'
+                    'B',
                 ],
                 'expectation' => [
                     'James',
@@ -73,7 +72,7 @@ class InitialMapperTest extends AbstractMapperTestCase
                 ],
                 'arguments' => [
                     2,
-                    true
+                    true,
                 ],
             ],
             [
@@ -84,8 +83,8 @@ class InitialMapperTest extends AbstractMapperTestCase
                 'expectation' => [
                     new Initial('J'),
                     new Initial('M'),
-                    'Walker'
-                ]
+                    'Walker',
+                ],
             ],
             [
                 'input' => [
@@ -94,12 +93,12 @@ class InitialMapperTest extends AbstractMapperTestCase
                 ],
                 'expectation' => [
                     'JM',
-                    'Walker'
+                    'Walker',
                 ],
                 'arguments' => [
-                    1
-                ]
-            ]
+                    1,
+                ],
+            ],
         ];
     }
 

@@ -16,8 +16,6 @@ class LastnamePrefix extends Lastname
     /**
      * if this is a lastname prefix, look up normalized version from registry
      * otherwise camelcase the lastname
-     *
-     * @return string
      */
     public function normalize(): string
     {

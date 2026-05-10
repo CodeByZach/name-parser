@@ -2,7 +2,6 @@
 
 namespace Tests\CodeByZach\NameParser;
 
-use CodeByZach\NameParser\Language\English;
 use CodeByZach\NameParser\Language\German;
 use CodeByZach\NameParser\Name;
 use CodeByZach\NameParser\Parser;
@@ -22,7 +21,7 @@ class ParserTest extends TestCase
                 [
                     'firstname' => 'James',
                     'lastname' => 'Norrington',
-                ]
+                ],
 
             ],
             [
@@ -31,7 +30,7 @@ class ParserTest extends TestCase
                     'firstname' => 'Hans',
                     'lastname' => 'Anderssen',
                     'middlename' => 'Christian',
-                ]
+                ],
             ],
             [
                 'Mr Anthony R Von Fange III',
@@ -41,7 +40,7 @@ class ParserTest extends TestCase
                     'initials' => 'R',
                     'lastname' => 'von Fange',
                     'suffix' => 'III',
-                ]
+                ],
             ],
             [
                 'J. B. Hunt',
@@ -49,7 +48,7 @@ class ParserTest extends TestCase
                     'firstname' => 'J.',
                     'initials' => 'B.',
                     'lastname' => 'Hunt',
-                ]
+                ],
             ],
             [
                 'J.B. Hunt',
@@ -57,23 +56,23 @@ class ParserTest extends TestCase
                     'firstname' => 'J',
                     'initials' => 'B',
                     'lastname' => 'Hunt',
-                ]
+                ],
             ],
             [
                 'Edward Senior III',
                 [
                     'firstname' => 'Edward',
                     'lastname' => 'Senior',
-                    'suffix' => 'III'
-                ]
+                    'suffix' => 'III',
+                ],
             ],
             [
                 'Edward Dale Senior II',
                 [
                     'firstname' => 'Edward',
                     'lastname' => 'Dale',
-                    'suffix' => 'Senior II'
-                ]
+                    'suffix' => 'Senior II',
+                ],
             ],
             [
                 'Dale Edward Jones Senior',
@@ -81,30 +80,30 @@ class ParserTest extends TestCase
                     'firstname' => 'Dale',
                     'middlename' => 'Edward',
                     'lastname' => 'Jones',
-                    'suffix' => 'Senior'
-                ]
+                    'suffix' => 'Senior',
+                ],
             ],
             [
                 'Jason Rodriguez Sr.',
                 [
                     'firstname' => 'Jason',
                     'lastname' => 'Rodriguez',
-                    'suffix' => 'Sr'
-                ]
+                    'suffix' => 'Sr',
+                ],
             ],
             [
                 'Jason Senior',
                 [
                     'firstname' => 'Jason',
                     'lastname' => 'Senior',
-                ]
+                ],
             ],
             [
                 'Bill Junior',
                 [
                     'firstname' => 'Bill',
                     'lastname' => 'Junior',
-                ]
+                ],
             ],
             [
                 'Sara Ann Fraser',
@@ -112,34 +111,34 @@ class ParserTest extends TestCase
                     'firstname' => 'Sara',
                     'middlename' => 'Ann',
                     'lastname' => 'Fraser',
-                ]
+                ],
             ],
             [
                 'Adam',
                 [
                     'firstname' => 'Adam',
-                ]
+                ],
             ],
             [
                 'OLD MACDONALD',
                 [
                     'firstname' => 'Old',
                     'lastname' => 'Macdonald',
-                ]
+                ],
             ],
             [
                 'Old MacDonald',
                 [
                     'firstname' => 'Old',
                     'lastname' => 'MacDonald',
-                ]
+                ],
             ],
             [
                 'Old McDonald',
                 [
                     'firstname' => 'Old',
                     'lastname' => 'McDonald',
-                ]
+                ],
             ],
             [
                 'Old Mc Donald',
@@ -147,7 +146,7 @@ class ParserTest extends TestCase
                     'firstname' => 'Old',
                     'middlename' => 'Mc',
                     'lastname' => 'Donald',
-                ]
+                ],
             ],
             [
                 'Old Mac Donald',
@@ -155,14 +154,14 @@ class ParserTest extends TestCase
                     'firstname' => 'Old',
                     'middlename' => 'Mac',
                     'lastname' => 'Donald',
-                ]
+                ],
             ],
             [
                 'James van Allen',
                 [
                     'firstname' => 'James',
                     'lastname' => 'van Allen',
-                ]
+                ],
             ],
             [
                 'Jimmy (Bubba) Smith',
@@ -170,7 +169,7 @@ class ParserTest extends TestCase
                     'firstname' => 'Jimmy',
                     'lastname' => 'Smith',
                     'nickname' => 'Bubba',
-                ]
+                ],
             ],
             [
                 'Miss Jennifer Shrader Lawrence',
@@ -179,7 +178,7 @@ class ParserTest extends TestCase
                     'firstname' => 'Jennifer',
                     'middlename' => 'Shrader',
                     'lastname' => 'Lawrence',
-                ]
+                ],
             ],
             [
                 'Dr. Jonathan Smith',
@@ -187,7 +186,7 @@ class ParserTest extends TestCase
                     'salutation' => 'Dr.',
                     'firstname' => 'Jonathan',
                     'lastname' => 'Smith',
-                ]
+                ],
             ],
             [
                 'Ms. Jamie P. Harrowitz',
@@ -196,7 +195,7 @@ class ParserTest extends TestCase
                     'firstname' => 'Jamie',
                     'initials' => 'P.',
                     'lastname' => 'Harrowitz',
-                ]
+                ],
             ],
             [
                 'Mr John Doe',
@@ -204,7 +203,7 @@ class ParserTest extends TestCase
                     'salutation' => 'Mr.',
                     'firstname' => 'John',
                     'lastname' => 'Doe',
-                ]
+                ],
             ],
             [
                 'Rev. Dr John Doe',
@@ -212,7 +211,7 @@ class ParserTest extends TestCase
                     'salutation' => 'Rev. Dr.',
                     'firstname' => 'John',
                     'lastname' => 'Doe',
-                ]
+                ],
             ],
             [
                 'Prof. Tyson J. Hirthe',
@@ -221,7 +220,7 @@ class ParserTest extends TestCase
                     'lastname' => 'Hirthe',
                     'firstname' => 'Tyson',
                     'initials' => 'J.',
-                ]
+                ],
             ],
             [
                 'prof Eveline Aufderhar',
@@ -229,23 +228,23 @@ class ParserTest extends TestCase
                     'salutation' => 'Prof.',
                     'lastname' => 'Aufderhar',
                     'firstname' => 'Eveline',
-                ]
+                ],
             ],
             [
                 'Anthony Von Fange III',
                 [
                     'firstname' => 'Anthony',
                     'lastname' => 'von Fange',
-                    'suffix' => 'III'
-                ]
+                    'suffix' => 'III',
+                ],
             ],
             [
                 'Smarty Pants Phd',
                 [
                     'firstname' => 'Smarty',
                     'lastname' => 'Pants',
-                    'suffix' => 'PhD'
-                ]
+                    'suffix' => 'PhD',
+                ],
             ],
             [
                 'Mark Peter Williams',
@@ -253,7 +252,7 @@ class ParserTest extends TestCase
                     'firstname' => 'Mark',
                     'middlename' => 'Peter',
                     'lastname' => 'Williams',
-                ]
+                ],
             ],
             [
                 'Mark P Williams',
@@ -261,7 +260,7 @@ class ParserTest extends TestCase
                     'firstname' => 'Mark',
                     'lastname' => 'Williams',
                     'initials' => 'P',
-                ]
+                ],
             ],
             [
                 'Mark P. Williams',
@@ -269,7 +268,7 @@ class ParserTest extends TestCase
                     'firstname' => 'Mark',
                     'initials' => 'P.',
                     'lastname' => 'Williams',
-                ]
+                ],
             ],
             [
                 'M Peter Williams',
@@ -277,7 +276,7 @@ class ParserTest extends TestCase
                     'firstname' => 'Peter',
                     'initials' => 'M',
                     'lastname' => 'Williams',
-                ]
+                ],
             ],
             [
                 'M. Peter Williams',
@@ -285,7 +284,7 @@ class ParserTest extends TestCase
                     'firstname' => 'Peter',
                     'initials' => 'M.',
                     'lastname' => 'Williams',
-                ]
+                ],
             ],
             [
                 'M. P. Williams',
@@ -293,7 +292,7 @@ class ParserTest extends TestCase
                     'firstname' => 'M.',
                     'initials' => 'P.',
                     'lastname' => 'Williams',
-                ]
+                ],
             ],
             [
                 'The Rev. Mark Williams',
@@ -301,7 +300,7 @@ class ParserTest extends TestCase
                     'salutation' => 'Rev.',
                     'firstname' => 'Mark',
                     'lastname' => 'Williams',
-                ]
+                ],
             ],
             [
                 'Mister Mark Williams',
@@ -309,14 +308,14 @@ class ParserTest extends TestCase
                     'salutation' => 'Mr.',
                     'firstname' => 'Mark',
                     'lastname' => 'Williams',
-                ]
+                ],
             ],
             [
                 'Fraser, Joshua',
                 [
                     'firstname' => 'Joshua',
                     'lastname' => 'Fraser',
-                ]
+                ],
             ],
             [
                 'Mrs. Brown, Amanda',
@@ -324,7 +323,7 @@ class ParserTest extends TestCase
                     'salutation' => 'Mrs.',
                     'firstname' => 'Amanda',
                     'lastname' => 'Brown',
-                ]
+                ],
             ],
             [
                 "Mr.\r\nPaul\rJoseph\nMaria\tWinters",
@@ -333,7 +332,7 @@ class ParserTest extends TestCase
                     'firstname' => 'Paul',
                     'middlename' => 'Joseph Maria',
                     'lastname' => 'Winters',
-                ]
+                ],
             ],
             [
                 'Van Truong',
@@ -362,8 +361,8 @@ class ParserTest extends TestCase
                 [
                     'firstname' => 'Anthony',
                     'lastname' => 'von Fange',
-                    'suffix' => 'III PhD'
-                ]
+                    'suffix' => 'III PhD',
+                ],
             ],
             [
                 'Jimmy (Bubba Junior) Smith',
@@ -371,15 +370,15 @@ class ParserTest extends TestCase
                     'nickname' => 'Bubba Junior',
                     'firstname' => 'Jimmy',
                     'lastname' => 'Smith',
-                ]
+                ],
             ],
             [
                 'Jonathan Smith, MD',
                 [
                     'firstname' => 'Jonathan',
                     'lastname' => 'Smith',
-                    'suffix' => 'MD'
-                ]
+                    'suffix' => 'MD',
+                ],
             ],
             [
                 'Kirk, James T.',
@@ -394,7 +393,7 @@ class ParserTest extends TestCase
                 [
                     'firstname' => 'James',
                     'lastname' => 'B',
-                ]
+                ],
             ],
             [
                 'Williams, Hank, Jr.',
@@ -402,7 +401,7 @@ class ParserTest extends TestCase
                     'firstname' => 'Hank',
                     'lastname' => 'Williams',
                     'suffix' => 'Jr',
-                ]
+                ],
             ],
             [
                 'Sir James Reynolds, Junior',
@@ -410,8 +409,8 @@ class ParserTest extends TestCase
                     'salutation' => 'Sir',
                     'firstname' => 'James',
                     'lastname' => 'Reynolds',
-                    'suffix' => 'Junior'
-                ]
+                    'suffix' => 'Junior',
+                ],
             ],
             [
                 'Sir John Paul Getty Sr.',
@@ -421,29 +420,29 @@ class ParserTest extends TestCase
                     'middlename' => 'Paul',
                     'lastname' => 'Getty',
                     'suffix' => 'Sr',
-                ]
+                ],
             ],
             [
                 'etna übel',
                 [
                     'firstname' => 'Etna',
                     'lastname' => 'Übel',
-                ]
+                ],
             ],
             [
                 'Markus Müller',
                 [
                     'firstname' => 'Markus',
                     'lastname' => 'Müller',
-                ]
+                ],
             ],
             [
                 'Charles Dixon (20th century)',
                 [
                     'firstname' => 'Charles',
                     'lastname' => 'Dixon',
-                    'nickname' => '20Th Century'
-                ]
+                    'nickname' => '20Th Century',
+                ],
             ],
             [
                 'Smith, John Eric',
@@ -451,7 +450,7 @@ class ParserTest extends TestCase
                     'lastname' => 'Smith',
                     'firstname' => 'John',
                     'middlename' => 'Eric',
-                ]
+                ],
             ],
             [
                 'PAUL M LEWIS MR',
@@ -459,7 +458,7 @@ class ParserTest extends TestCase
                     'firstname' => 'Paul',
                     'initials' => 'M',
                     'lastname' => 'Lewis Mr',
-                ]
+                ],
             ],
             [
                 'SUJAN MASTER',
@@ -474,7 +473,7 @@ class ParserTest extends TestCase
                     'firstname' => 'James',
                     'initials' => 'J',
                     'lastname' => 'Ma',
-                ]
+                ],
             ],
             [
                 'Tiptree, James, Jr.',
@@ -482,7 +481,7 @@ class ParserTest extends TestCase
                     'lastname' => 'Tiptree',
                     'firstname' => 'James',
                     'suffix' => 'Jr',
-                ]
+                ],
             ],
             [
                 'Miller, Walter M., Jr.',
@@ -491,7 +490,7 @@ class ParserTest extends TestCase
                     'firstname' => 'Walter',
                     'initials' => 'M.',
                     'suffix' => 'Jr',
-                ]
+                ],
             ],
             [
                 'Tiptree, James Jr.',
@@ -499,7 +498,7 @@ class ParserTest extends TestCase
                     'lastname' => 'Tiptree',
                     'firstname' => 'James',
                     'suffix' => 'Jr',
-                ]
+                ],
             ],
             [
                 'Miller, Walter M. Jr.',
@@ -508,7 +507,7 @@ class ParserTest extends TestCase
                     'firstname' => 'Walter',
                     'initials' => 'M.',
                     'suffix' => 'Jr',
-                ]
+                ],
             ],
             [
                 'Thái Quốc Nguyễn',
@@ -516,28 +515,28 @@ class ParserTest extends TestCase
                     'lastname' => 'Nguyễn',
                     'middlename' => 'Quốc',
                     'firstname' => 'Thái',
-                ]
+                ],
             ],
             [
                 'Yumeng Du',
                 [
                     'lastname' => 'Du',
                     'firstname' => 'Yumeng',
-                ]
+                ],
             ],
             [
                 'Her Honour Mrs Judy',
                 [
                     'lastname' => 'Judy',
-                    'salutation' => 'Her Honour Mrs.'
-                ]
+                    'salutation' => 'Her Honour Mrs.',
+                ],
             ],
             [
                 'Etje Heijdanus-De Boer',
                 [
                     'firstname' => 'Etje',
                     'lastname' => 'Heijdanus-De Boer',
-                ]
+                ],
             ],
             [
                 'JB Hunt',
@@ -545,7 +544,7 @@ class ParserTest extends TestCase
                     'firstname' => 'J',
                     'initials' => 'B',
                     'lastname' => 'Hunt',
-                ]
+                ],
             ],
             [
                 'Charles Philip Arthur George Mountbatten-Windsor',
@@ -553,7 +552,7 @@ class ParserTest extends TestCase
                     'firstname' => 'Charles',
                     'middlename' => 'Philip Arthur George',
                     'lastname' => 'Mountbatten-Windsor',
-                ]
+                ],
             ],
             [
                 'Ella Marija Lani Yelich-O\'Connor',
@@ -561,8 +560,8 @@ class ParserTest extends TestCase
                     'firstname' => 'Ella',
                     'middlename' => 'Marija Lani',
                     'lastname' => 'Yelich-O\'Connor',
-                ]
-            ]
+                ],
+            ],
         ];
     }
 

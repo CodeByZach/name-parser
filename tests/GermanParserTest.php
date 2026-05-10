@@ -21,7 +21,7 @@ class GermanParserTest extends TestCase
                 [
                     'salutation' => 'Herr',
                     'lastname' => 'Schmidt',
-                ]
+                ],
             ],
             [
                 'Frau Maria Lange',
@@ -29,7 +29,7 @@ class GermanParserTest extends TestCase
                     'salutation' => 'Frau',
                     'firstname' => 'Maria',
                     'lastname' => 'Lange',
-                ]
+                ],
             ],
             [
                 'Hr. Juergen von der Lippe',
@@ -37,7 +37,7 @@ class GermanParserTest extends TestCase
                     'salutation' => 'Herr',
                     'firstname' => 'Juergen',
                     'lastname' => 'von der Lippe',
-                ]
+                ],
             ],
             [
                 'Fr. Charlotte von Stein',
@@ -45,7 +45,7 @@ class GermanParserTest extends TestCase
                     'salutation' => 'Frau',
                     'firstname' => 'Charlotte',
                     'lastname' => 'von Stein',
-                ]
+                ],
             ],
         ];
     }
@@ -54,7 +54,7 @@ class GermanParserTest extends TestCase
     public function testParse($input, $expectation)
     {
         $parser = new Parser([
-            new German()
+            new German(),
         ]);
         $name = $parser->parse($input);
 

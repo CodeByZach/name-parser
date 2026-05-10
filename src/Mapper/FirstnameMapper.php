@@ -4,8 +4,8 @@ namespace CodeByZach\NameParser\Mapper;
 
 use CodeByZach\NameParser\Part\AbstractPart;
 use CodeByZach\NameParser\Part\Firstname;
-use CodeByZach\NameParser\Part\Lastname;
 use CodeByZach\NameParser\Part\Initial;
+use CodeByZach\NameParser\Part\Lastname;
 use CodeByZach\NameParser\Part\Salutation;
 
 class FirstnameMapper extends AbstractMapper
@@ -13,7 +13,7 @@ class FirstnameMapper extends AbstractMapper
     /**
      * map firstnames in parts array
      *
-     * @param array $parts the parts
+     * @param  array  $parts  the parts
      * @return array the mapped parts
      */
     public function map(array $parts): array
@@ -24,7 +24,7 @@ class FirstnameMapper extends AbstractMapper
 
         $pos = $this->findFirstnamePosition($parts);
 
-        if (null !== $pos) {
+        if ($pos !== null) {
             $parts[$pos] = new Firstname($parts[$pos]);
         }
 
@@ -32,8 +32,7 @@ class FirstnameMapper extends AbstractMapper
     }
 
     /**
-     * @param $part
-     * @return Firstname
+     * @param  string|AbstractPart  $part
      */
     protected function handleSinglePart($part): AbstractPart
     {
@@ -44,10 +43,6 @@ class FirstnameMapper extends AbstractMapper
         return new Firstname($part);
     }
 
-    /**
-     * @param array $parts
-     * @return int|null
-     */
     protected function findFirstnamePosition(array $parts): ?int
     {
         $pos = null;
@@ -62,7 +57,7 @@ class FirstnameMapper extends AbstractMapper
                 break;
             }
 
-            if ($part instanceof Initial && null === $pos) {
+            if ($part instanceof Initial && $pos === null) {
                 $pos = $k;
             }
 
@@ -76,15 +71,11 @@ class FirstnameMapper extends AbstractMapper
         return $pos;
     }
 
-    /**
-     * @param array $parts
-     * @return int
-     */
     protected function getStartIndex(array $parts): int
     {
         $index = $this->findFirstMapped(Salutation::class, $parts);
 
-        if (false === $index) {
+        if ($index === false) {
             return 0;
         }
 

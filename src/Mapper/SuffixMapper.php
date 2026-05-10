@@ -23,13 +23,14 @@ class SuffixMapper extends AbstractMapper
     /**
      * map suffixes in the parts array
      *
-     * @param array $parts the name parts
+     * @param  array  $parts  the name parts
      * @return array the mapped parts
      */
     public function map(array $parts): array
     {
         if ($this->isMatchingSinglePart($parts)) {
             $parts[0] = new Suffix($parts[0], $this->suffixes[$this->getKey($parts[0])]);
+
             return $parts;
         }
 
@@ -38,7 +39,7 @@ class SuffixMapper extends AbstractMapper
         for ($k = $start; $k > $this->reservedParts - 1; $k--) {
             $part = $parts[$k];
 
-            if (!$this->isSuffix($part)) {
+            if (! $this->isSuffix($part)) {
                 break;
             }
 
@@ -48,33 +49,25 @@ class SuffixMapper extends AbstractMapper
         return $parts;
     }
 
-    /**
-     * @param $parts
-     * @return bool
-     */
     protected function isMatchingSinglePart($parts): bool
     {
-        if (!$this->matchSinglePart) {
+        if (! $this->matchSinglePart) {
             return false;
         }
 
-        if (1 !== count($parts)) {
+        if (count($parts) !== 1) {
             return false;
         }
 
         return $this->isSuffix($parts[0]);
     }
 
-    /**
-     * @param $part
-     * @return bool
-     */
     protected function isSuffix($part): bool
     {
         if ($part instanceof AbstractPart) {
             return false;
         }
 
-        return (array_key_exists($this->getKey($part), $this->suffixes));
+        return array_key_exists($this->getKey($part), $this->suffixes);
     }
 }

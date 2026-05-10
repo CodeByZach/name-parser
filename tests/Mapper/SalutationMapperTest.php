@@ -5,7 +5,6 @@ namespace Tests\CodeByZach\NameParser\Mapper;
 use CodeByZach\NameParser\Language\English;
 use CodeByZach\NameParser\Mapper\SalutationMapper;
 use CodeByZach\NameParser\Part\Firstname;
-use CodeByZach\NameParser\Part\Lastname;
 use CodeByZach\NameParser\Part\Salutation;
 
 class SalutationMapperTest extends AbstractMapperTestCase

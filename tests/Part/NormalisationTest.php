@@ -43,7 +43,7 @@ class NormalisationTest extends TestCase
 
         $part = new Lastname('nguyễn');
         $this->assertEquals('Nguyễn', $part->normalize());
-   }
+    }
 
     /**
      * make sure we test both with and without mb_string support

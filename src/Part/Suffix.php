@@ -2,7 +2,4 @@
 
 namespace CodeByZach\NameParser\Part;
 
-class Suffix extends PreNormalizedPart
-{
-
-}
+class Suffix extends PreNormalizedPart {}

@@ -19,7 +19,7 @@ class MiddlenameMapper extends AbstractMapper
     /**
      * map middlenames in the parts array
      *
-     * @param array $parts the name parts
+     * @param  array  $parts  the name parts
      * @return array the mapped parts
      */
     public function map(array $parts): array
@@ -33,7 +33,7 @@ class MiddlenameMapper extends AbstractMapper
 
         $start = $this->findFirstMapped(Firstname::class, $parts);
 
-        if (false === $start) {
+        if ($start === false) {
             return $parts;
         }
 
@@ -41,9 +41,8 @@ class MiddlenameMapper extends AbstractMapper
     }
 
     /**
-     * @param $start
-     * @param $parts
-     * @return mixed
+     * @param  int  $start
+     * @param  array  $parts
      */
     protected function mapFrom($start, $parts): array
     {

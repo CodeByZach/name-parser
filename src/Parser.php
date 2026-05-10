@@ -3,13 +3,13 @@
 namespace CodeByZach\NameParser;
 
 use CodeByZach\NameParser\Language\English;
+use CodeByZach\NameParser\Mapper\FirstnameMapper;
+use CodeByZach\NameParser\Mapper\InitialMapper;
+use CodeByZach\NameParser\Mapper\LastnameMapper;
+use CodeByZach\NameParser\Mapper\MiddlenameMapper;
 use CodeByZach\NameParser\Mapper\NicknameMapper;
 use CodeByZach\NameParser\Mapper\SalutationMapper;
 use CodeByZach\NameParser\Mapper\SuffixMapper;
-use CodeByZach\NameParser\Mapper\InitialMapper;
-use CodeByZach\NameParser\Mapper\LastnameMapper;
-use CodeByZach\NameParser\Mapper\FirstnameMapper;
-use CodeByZach\NameParser\Mapper\MiddlenameMapper;
 
 class Parser
 {
@@ -60,8 +60,7 @@ class Parser
      * - surname / last name
      * - suffix (II, Phd, Jr, etc)
      *
-     * @param string $name
-     * @return Name
+     * @param  string  $name
      */
     public function parse($name): Name
     {
@@ -69,7 +68,7 @@ class Parser
 
         $segments = explode(',', $name);
 
-        if (1 < count($segments)) {
+        if (count($segments) > 1) {
             return $this->parseSplitName($segments[0], $segments[1], $segments[2] ?? '');
         }
 
@@ -85,10 +84,8 @@ class Parser
     /**
      * handles split-parsing of comma-separated name parts
      *
-     * @param $left - the name part left of the comma
-     * @param $right - the name part right of the comma
-     *
-     * @return Name
+     * @param  $left  - the name part left of the comma
+     * @param  $right  - the name part right of the comma
      */
     protected function parseSplitName($first, $second, $third): Name
     {
@@ -101,9 +98,6 @@ class Parser
         return new Name($parts);
     }
 
-    /**
-     * @return Parser
-     */
     protected function getFirstSegmentParser(): Parser
     {
         $parser = new Parser();
@@ -119,9 +113,6 @@ class Parser
         return $parser;
     }
 
-    /**
-     * @return Parser
-     */
     protected function getSecondSegmentParser(): Parser
     {
         $parser = new Parser();
@@ -151,8 +142,6 @@ class Parser
 
     /**
      * get the mappers for this parser
-     *
-     * @return array
      */
     public function getMappers(): array
     {
@@ -173,9 +162,6 @@ class Parser
 
     /**
      * set the mappers for this parser
-     *
-     * @param array $mappers
-     * @return Parser
      */
     public function setMappers(array $mappers): Parser
     {
@@ -186,9 +172,6 @@ class Parser
 
     /**
      * normalize the name
-     *
-     * @param string $name
-     * @return string
      */
     protected function normalize(string $name): string
     {
@@ -196,13 +179,11 @@ class Parser
 
         $name = trim($name);
 
-        return preg_replace('/[' . preg_quote($whitespace) . ']+/', ' ', $name);
+        return preg_replace('/[' . preg_quote($whitespace, '/') . ']+/', ' ', $name);
     }
 
     /**
      * get a string of characters that are supposed to be treated as whitespace
-     *
-     * @return string
      */
     public function getWhitespace(): string
     {
@@ -211,9 +192,6 @@ class Parser
 
     /**
      * set the string of characters that are supposed to be treated as whitespace
-     *
-     * @param $whitespace
-     * @return Parser
      */
     public function setWhitespace($whitespace): Parser
     {
@@ -267,18 +245,11 @@ class Parser
         return $salutations;
     }
 
-    /**
-     * @return array
-     */
     public function getNicknameDelimiters(): array
     {
         return $this->nicknameDelimiters;
     }
 
-    /**
-     * @param array $nicknameDelimiters
-     * @return Parser
-     */
     public function setNicknameDelimiters(array $nicknameDelimiters): Parser
     {
         $this->nicknameDelimiters = $nicknameDelimiters;
@@ -286,18 +257,11 @@ class Parser
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getMaxSalutationIndex(): int
     {
         return $this->maxSalutationIndex;
     }
 
-    /**
-     * @param int $maxSalutationIndex
-     * @return Parser
-     */
     public function setMaxSalutationIndex(int $maxSalutationIndex): Parser
     {
         $this->maxSalutationIndex = $maxSalutationIndex;
@@ -305,18 +269,11 @@ class Parser
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getMaxCombinedInitials(): int
     {
         return $this->maxCombinedInitials;
     }
 
-    /**
-     * @param int $maxCombinedInitials
-     * @return Parser
-     */
     public function setMaxCombinedInitials(int $maxCombinedInitials): Parser
     {
         $this->maxCombinedInitials = $maxCombinedInitials;

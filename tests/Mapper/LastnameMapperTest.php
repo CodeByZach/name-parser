@@ -99,10 +99,10 @@ class LastnameMapperTest extends AbstractMapperTestCase
             ],
             [
                 'input' => [
-                    'Kirk'
+                    'Kirk',
                 ],
                 'expectation' => [
-                    'Kirk'
+                    'Kirk',
                 ],
             ],
             [
@@ -113,9 +113,9 @@ class LastnameMapperTest extends AbstractMapperTestCase
                     new Lastname('Kirk'),
                 ],
                 'arguments' => [
-                    true
+                    true,
                 ],
-            ]
+            ],
         ];
     }
 

@@ -16,12 +16,12 @@ class NicknameMapper extends AbstractMapper
         '(' => ')',
         '<' => '>',
         '"' => '"',
-        '\'' => '\''
+        '\'' => '\'',
     ];
 
     public function __construct(array $delimiters = [])
     {
-        if (!empty($delimiters)) {
+        if (! empty($delimiters)) {
             $this->delimiters = $delimiters;
         }
     }
@@ -29,7 +29,7 @@ class NicknameMapper extends AbstractMapper
     /**
      * map nicknames in the parts array
      *
-     * @param array $parts the name parts
+     * @param  array  $parts  the name parts
      * @return array the mapped parts
      */
     public function map(array $parts): array
@@ -51,7 +51,7 @@ class NicknameMapper extends AbstractMapper
                 $closingDelimiter = $this->delimiters[$matches[1]];
             }
 
-            if (!$isEncapsulated) {
+            if (! $isEncapsulated) {
                 continue;
             }
 

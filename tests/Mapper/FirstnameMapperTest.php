@@ -57,8 +57,8 @@ class FirstnameMapperTest extends AbstractMapperTestCase
                 'expectation' => [
                     new Firstname('Alfonso'),
                     new Salutation('Mr'),
-                ]
-            ]
+                ],
+            ],
         ];
     }
 

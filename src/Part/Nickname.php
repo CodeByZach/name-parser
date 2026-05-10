@@ -6,8 +6,6 @@ class Nickname extends AbstractPart
 {
     /**
      * camelcase the nickname for normalization
-     *
-     * @return string
      */
     public function normalize(): string
     {
