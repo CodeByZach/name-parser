@@ -2,15 +2,16 @@
 
 namespace Tests\CodeByZach\NameParser\Mapper;
 
-use CodeByZach\NameParser\Part\Salutation;
+use CodeByZach\NameParser\Mapper\NicknameMapper;
 use CodeByZach\NameParser\Part\Nickname;
+use CodeByZach\NameParser\Part\Salutation;
 
-class NicknameMapperTest extends AbstractMapperTest
+class NicknameMapperTest extends AbstractMapperTestCase
 {
     /**
      * @return array
      */
-    public function provider()
+    public static function provider()
     {
         return [
             [

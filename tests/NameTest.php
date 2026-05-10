@@ -2,7 +2,8 @@
 
 namespace Tests\CodeByZach\NameParser;
 
-use PHPUnit\Framework\TestCase;
+use CodeByZach\NameParser\Name;
+use CodeByZach\NameParser\Parser;
 use CodeByZach\NameParser\Part\Firstname;
 use CodeByZach\NameParser\Part\Initial;
 use CodeByZach\NameParser\Part\Lastname;
@@ -11,6 +12,7 @@ use CodeByZach\NameParser\Part\Middlename;
 use CodeByZach\NameParser\Part\Nickname;
 use CodeByZach\NameParser\Part\Salutation;
 use CodeByZach\NameParser\Part\Suffix;
+use PHPUnit\Framework\TestCase;
 
 class NameTest extends TestCase
 {

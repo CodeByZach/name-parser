@@ -3,16 +3,17 @@
 namespace Tests\CodeByZach\NameParser\Mapper;
 
 use CodeByZach\NameParser\Language\English;
+use CodeByZach\NameParser\Mapper\InitialMapper;
 use CodeByZach\NameParser\Part\Initial;
-use CodeByZach\NameParser\Part\Salutation;
 use CodeByZach\NameParser\Part\Lastname;
+use CodeByZach\NameParser\Part\Salutation;
 
-class InitialMapperTest extends AbstractMapperTest
+class InitialMapperTest extends AbstractMapperTestCase
 {
     /**
      * @return array
      */
-    public function provider()
+    public static function provider()
     {
         return [
             [

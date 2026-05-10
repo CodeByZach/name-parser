@@ -2,16 +2,19 @@
 
 namespace Tests\CodeByZach\NameParser;
 
-use PHPUnit\Framework\TestCase;
 use CodeByZach\NameParser\Language\English;
 use CodeByZach\NameParser\Language\German;
+use CodeByZach\NameParser\Name;
+use CodeByZach\NameParser\Parser;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 
 class ParserTest extends TestCase
 {
     /**
      * @return array
      */
-    public function provider()
+    public static function provider()
     {
         return [
             [
@@ -563,12 +566,7 @@ class ParserTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider provider
-     *
-     * @param $input
-     * @param $expectation
-     */
+    #[DataProvider('provider')]
     public function testParse($input, $expectation)
     {
         $parser = new Parser();
