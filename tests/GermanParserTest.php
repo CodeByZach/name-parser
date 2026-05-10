@@ -11,9 +11,9 @@ use PHPUnit\Framework\TestCase;
 class GermanParserTest extends TestCase
 {
     /**
-     * @return array
+     * @return array<int, array{string, array<string, string>}>
      */
-    public static function provider()
+    public static function provider(): array
     {
         return [
             [
@@ -50,8 +50,11 @@ class GermanParserTest extends TestCase
         ];
     }
 
+    /**
+     * @param  array<string, string>  $expectation
+     */
     #[DataProvider('provider')]
-    public function testParse($input, $expectation)
+    public function testParse(string $input, array $expectation): void
     {
         $parser = new Parser([
             new German(),

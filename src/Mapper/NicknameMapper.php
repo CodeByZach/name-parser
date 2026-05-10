@@ -32,8 +32,8 @@ class NicknameMapper extends AbstractMapper
     /**
      * map nicknames in the parts array
      *
-     * @param  array  $parts  the name parts
-     * @return array the mapped parts
+     * @param  array<int, AbstractPart|string>  $parts
+     * @return array<int, AbstractPart|string>
      */
     #[\Override]
     public function map(array $parts): array
@@ -70,10 +70,7 @@ class NicknameMapper extends AbstractMapper
         return $parts;
     }
 
-    /**
-     * @return string
-     */
-    protected function buildRegexp()
+    protected function buildRegexp(): string
     {
         $regexp = '/^([';
 

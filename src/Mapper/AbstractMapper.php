@@ -8,11 +8,16 @@ abstract class AbstractMapper
 {
     /**
      * implements the mapping of parts
+     *
+     * @param  array<int, AbstractPart|string>  $parts
+     * @return array<int, AbstractPart|string>
      */
     abstract public function map(array $parts): array;
 
     /**
      * checks if there are still unmapped parts left before the given position
+     *
+     * @param  array<int, AbstractPart|string>  $parts
      */
     protected function hasUnmappedPartsBefore(array $parts, int $index): bool
     {
@@ -29,6 +34,10 @@ abstract class AbstractMapper
         return false;
     }
 
+    /**
+     * @param  class-string  $type
+     * @param  array<int, AbstractPart|string>  $parts
+     */
     protected function findFirstMapped(string $type, array $parts): int|false
     {
         $total = count($parts);

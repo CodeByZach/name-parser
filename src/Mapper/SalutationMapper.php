@@ -18,8 +18,8 @@ class SalutationMapper extends AbstractMapper
     /**
      * map salutations in the parts array
      *
-     * @param  array  $parts  the name parts
-     * @return array the mapped parts
+     * @param  array<int, AbstractPart|string>  $parts
+     * @return array<int, AbstractPart|string>
      */
     #[\Override]
     public function map(array $parts): array
@@ -41,11 +41,16 @@ class SalutationMapper extends AbstractMapper
      * We pass the full parts array and the current position to allow
      * not only single-word matches but also combined matches with
      * subsequent words (parts).
+     *
+     * @param  array<int, AbstractPart|string>  $parts
+     * @return array<int, AbstractPart|string>
      */
     protected function substituteWithSalutation(array $parts, int $start): array
     {
-        if ($this->isSalutation($parts[$start])) {
-            $parts[$start] = new Salutation($parts[$start], $this->salutations[$this->getKey($parts[$start])]);
+        $current = $parts[$start];
+
+        if (is_string($current) && $this->isSalutation($current)) {
+            $parts[$start] = new Salutation($current, $this->salutations[$this->getKey($current)]);
 
             return $parts;
         }
@@ -70,11 +75,17 @@ class SalutationMapper extends AbstractMapper
      * check if the given subset matches the given keys entry by entry,
      * which means word by word, except that we first need to key-ify
      * the subset words
+     *
+     * @param  array<int, string>  $keys
+     * @param  array<int, AbstractPart|string>  $subset
+     *
+     * @phpstan-assert-if-true array<int, string> $subset
      */
     private function isMatchingSubset(array $keys, array $subset): bool
     {
         for ($i = 0; $i < count($subset); $i++) {
-            if ($this->getKey($subset[$i]) !== $keys[$i]) {
+            $part = $subset[$i];
+            if (! is_string($part) || $this->getKey($part) !== $keys[$i]) {
                 return false;
             }
         }
@@ -84,10 +95,8 @@ class SalutationMapper extends AbstractMapper
 
     /**
      * check if the given word is a viable salutation
-     *
-     * @param  string  $word  the word to check
      */
-    protected function isSalutation($word): bool
+    protected function isSalutation(string $word): bool
     {
         return array_key_exists($this->getKey($word), $this->salutations);
     }

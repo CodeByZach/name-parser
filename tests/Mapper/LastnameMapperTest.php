@@ -12,9 +12,9 @@ use CodeByZach\NameParser\Part\Salutation;
 class LastnameMapperTest extends AbstractMapperTestCase
 {
     /**
-     * @return array
+     * @return array<int, array<string, mixed>>
      */
-    public static function provider()
+    public static function provider(): array
     {
         return [
             [
@@ -119,7 +119,7 @@ class LastnameMapperTest extends AbstractMapperTestCase
         ];
     }
 
-    protected function getMapper($matchSingle = false)
+    protected function getMapper(bool $matchSingle = false): LastnameMapper
     {
         $english = new English();
 

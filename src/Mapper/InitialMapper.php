@@ -18,8 +18,8 @@ class InitialMapper extends AbstractMapper
     /**
      * map intials in parts array
      *
-     * @param  array  $parts  the name parts
-     * @return array the mapped parts
+     * @param  array<int, AbstractPart|string>  $parts
+     * @return array<int, AbstractPart|string>
      */
     #[\Override]
     public function map(array $parts): array
@@ -48,7 +48,7 @@ class InitialMapper extends AbstractMapper
                 }
             }
 
-            if ($this->isInitial($part)) {
+            if (is_string($part) && $this->isInitial($part)) {
                 $parts[$k] = new Initial($part);
             }
         }

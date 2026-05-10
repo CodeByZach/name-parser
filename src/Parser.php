@@ -16,12 +16,12 @@ class Parser
     protected string $whitespace = " \r\n\t";
 
     /**
-     * @var list<\CodeByZach\NameParser\Mapper\AbstractMapper>
+     * @var array<int, \CodeByZach\NameParser\Mapper\AbstractMapper>
      */
     protected array $mappers = [];
 
     /**
-     * @var list<LanguageInterface>
+     * @var array<int, LanguageInterface>
      */
     protected array $languages = [];
 
@@ -34,6 +34,9 @@ class Parser
 
     protected int $maxCombinedInitials = 2;
 
+    /**
+     * @param  array<int, LanguageInterface>  $languages
+     */
     public function __construct(array $languages = [])
     {
         if (empty($languages)) {
@@ -50,10 +53,8 @@ class Parser
      * - middle initials
      * - surname / last name
      * - suffix (II, Phd, Jr, etc)
-     *
-     * @param  string  $name
      */
-    public function parse($name): Name
+    public function parse(string $name): Name
     {
         $name = $this->normalize($name);
 
@@ -74,11 +75,8 @@ class Parser
 
     /**
      * handles split-parsing of comma-separated name parts
-     *
-     * @param  $left  - the name part left of the comma
-     * @param  $right  - the name part right of the comma
      */
-    protected function parseSplitName($first, $second, $third): Name
+    protected function parseSplitName(string $first, string $second, string $third): Name
     {
         $parts = array_merge(
             $this->getFirstSegmentParser()->parse($first)->getParts(),
@@ -133,6 +131,8 @@ class Parser
 
     /**
      * get the mappers for this parser
+     *
+     * @return array<int, \CodeByZach\NameParser\Mapper\AbstractMapper>
      */
     public function getMappers(): array
     {
@@ -153,6 +153,8 @@ class Parser
 
     /**
      * set the mappers for this parser
+     *
+     * @param  array<int, \CodeByZach\NameParser\Mapper\AbstractMapper>  $mappers
      */
     public function setMappers(array $mappers): Parser
     {
@@ -170,7 +172,7 @@ class Parser
 
         $name = trim($name);
 
-        return preg_replace('/[' . preg_quote($whitespace, '/') . ']+/', ' ', $name);
+        return preg_replace('/[' . preg_quote($whitespace, '/') . ']+/', ' ', $name) ?? $name;
     }
 
     /**
@@ -184,7 +186,7 @@ class Parser
     /**
      * set the string of characters that are supposed to be treated as whitespace
      */
-    public function setWhitespace($whitespace): Parser
+    public function setWhitespace(string $whitespace): Parser
     {
         $this->whitespace = $whitespace;
 
@@ -192,13 +194,12 @@ class Parser
     }
 
     /**
-     * @return array
+     * @return array<string, string>
      */
-    protected function getPrefixes()
+    protected function getPrefixes(): array
     {
         $prefixes = [];
 
-        /** @var LanguageInterface $language */
         foreach ($this->languages as $language) {
             $prefixes += $language->getLastnamePrefixes();
         }
@@ -207,13 +208,12 @@ class Parser
     }
 
     /**
-     * @return array
+     * @return array<string, string>
      */
-    protected function getSuffixes()
+    protected function getSuffixes(): array
     {
         $suffixes = [];
 
-        /** @var LanguageInterface $language */
         foreach ($this->languages as $language) {
             $suffixes += $language->getSuffixes();
         }
@@ -222,13 +222,12 @@ class Parser
     }
 
     /**
-     * @return array
+     * @return array<string, string>
      */
-    protected function getSalutations()
+    protected function getSalutations(): array
     {
         $salutations = [];
 
-        /** @var LanguageInterface $language */
         foreach ($this->languages as $language) {
             $salutations += $language->getSalutations();
         }
@@ -236,11 +235,17 @@ class Parser
         return $salutations;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getNicknameDelimiters(): array
     {
         return $this->nicknameDelimiters;
     }
 
+    /**
+     * @param  array<string, string>  $nicknameDelimiters
+     */
     public function setNicknameDelimiters(array $nicknameDelimiters): Parser
     {
         $this->nicknameDelimiters = $nicknameDelimiters;

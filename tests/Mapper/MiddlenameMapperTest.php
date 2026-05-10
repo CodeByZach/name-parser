@@ -10,9 +10,9 @@ use CodeByZach\NameParser\Part\Middlename;
 class MiddlenameMapperTest extends AbstractMapperTestCase
 {
     /**
-     * @return array
+     * @return array<int, array<string, mixed>>
      */
-    public static function provider()
+    public static function provider(): array
     {
         return [
             [
@@ -93,7 +93,7 @@ class MiddlenameMapperTest extends AbstractMapperTestCase
         ];
     }
 
-    protected function getMapper($mapWithoutLastname = false)
+    protected function getMapper(bool $mapWithoutLastname = false): MiddlenameMapper
     {
         return new MiddlenameMapper($mapWithoutLastname);
     }

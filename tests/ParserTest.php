@@ -11,9 +11,9 @@ use PHPUnit\Framework\TestCase;
 class ParserTest extends TestCase
 {
     /**
-     * @return array
+     * @return array<int, array{string, array<string, string>}>
      */
-    public static function provider()
+    public static function provider(): array
     {
         return [
             [
@@ -565,8 +565,11 @@ class ParserTest extends TestCase
         ];
     }
 
+    /**
+     * @param  array<string, string>  $expectation
+     */
     #[DataProvider('provider')]
-    public function testParse($input, $expectation)
+    public function testParse(string $input, array $expectation): void
     {
         $parser = new Parser();
         $name = $parser->parse($input);
@@ -575,7 +578,7 @@ class ParserTest extends TestCase
         $this->assertEquals($expectation, $name->getAll());
     }
 
-    public function testSetGetWhitespace()
+    public function testSetGetWhitespace(): void
     {
         $parser = new Parser();
         $parser->setWhitespace('abc');
@@ -586,7 +589,7 @@ class ParserTest extends TestCase
         $this->assertSame('   _', $parser->getWhitespace());
     }
 
-    public function testSetGetNicknameDelimiters()
+    public function testSetGetNicknameDelimiters(): void
     {
         $parser = new Parser();
         $parser->setNicknameDelimiters(['[' => ']']);
@@ -595,7 +598,7 @@ class ParserTest extends TestCase
         $this->assertNotSame('Jim', $parser->parse('(Jim)')->getNickname());
     }
 
-    public function testSetMaxSalutationIndex()
+    public function testSetMaxSalutationIndex(): void
     {
         $parser = new Parser();
         $this->assertSame(0, $parser->getMaxSalutationIndex());
@@ -610,7 +613,7 @@ class ParserTest extends TestCase
         $this->assertSame('Mr.', $parser->parse('Francis Mr')->getSalutation());
     }
 
-    public function testSetMaxCombinedInitials()
+    public function testSetMaxCombinedInitials(): void
     {
         $parser = new Parser();
         $this->assertSame(2, $parser->getMaxCombinedInitials());
@@ -625,7 +628,7 @@ class ParserTest extends TestCase
         $this->assertSame('P A G', $parser->parse('Charles PAG Mountbatten-Windsor')->getInitials());
     }
 
-    public function testParserAndSubparsersProperlyHandleLanguages()
+    public function testParserAndSubparsersProperlyHandleLanguages(): void
     {
         $parser = new Parser([
             new German(),

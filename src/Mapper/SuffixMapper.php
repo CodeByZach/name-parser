@@ -19,14 +19,17 @@ class SuffixMapper extends AbstractMapper
     /**
      * map suffixes in the parts array
      *
-     * @param  array  $parts  the name parts
-     * @return array the mapped parts
+     * @param  array<int, AbstractPart|string>  $parts
+     * @return array<int, AbstractPart|string>
      */
     #[\Override]
     public function map(array $parts): array
     {
         if ($this->isMatchingSinglePart($parts)) {
-            $parts[0] = new Suffix($parts[0], $this->suffixes[$this->getKey($parts[0])]);
+            $first = $parts[0];
+            if (is_string($first)) {
+                $parts[0] = new Suffix($first, $this->suffixes[$this->getKey($first)]);
+            }
 
             return $parts;
         }
@@ -40,13 +43,17 @@ class SuffixMapper extends AbstractMapper
                 break;
             }
 
+            // isSuffix() guarantees $part is a string at this point
             $parts[$k] = new Suffix($part, $this->suffixes[$this->getKey($part)]);
         }
 
         return $parts;
     }
 
-    protected function isMatchingSinglePart($parts): bool
+    /**
+     * @param  array<int, AbstractPart|string>  $parts
+     */
+    protected function isMatchingSinglePart(array $parts): bool
     {
         if (! $this->matchSinglePart) {
             return false;
@@ -59,7 +66,10 @@ class SuffixMapper extends AbstractMapper
         return $this->isSuffix($parts[0]);
     }
 
-    protected function isSuffix($part): bool
+    /**
+     * @phpstan-assert-if-true string $part
+     */
+    protected function isSuffix(AbstractPart|string $part): bool
     {
         if ($part instanceof AbstractPart) {
             return false;

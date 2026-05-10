@@ -19,7 +19,7 @@ class NormalisationTest extends TestCase
     /**
      * make sure we test both with and without mb_string support
      */
-    public function testCamelcasingWorksWithMbString()
+    public function testCamelcasingWorksWithMbString(): void
     {
         $functionExistsMock = $this->getFunctionMock(__NAMESPACE__, 'function_exists');
         $functionExistsMock->expects($this->any())
@@ -48,7 +48,7 @@ class NormalisationTest extends TestCase
     /**
      * make sure we test both with and without mb_string support
      */
-    public function testCamelcasingWorksWithoutMbString()
+    public function testCamelcasingWorksWithoutMbString(): void
     {
         $functionExistsMock = $this->getFunctionMock(__NAMESPACE__, 'function_exists');
         $functionExistsMock->expects($this->any())

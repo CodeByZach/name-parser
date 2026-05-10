@@ -13,8 +13,8 @@ class FirstnameMapper extends AbstractMapper
     /**
      * map firstnames in parts array
      *
-     * @param  array  $parts  the parts
-     * @return array the mapped parts
+     * @param  array<int, AbstractPart|string>  $parts
+     * @return array<int, AbstractPart|string>
      */
     #[\Override]
     public function map(array $parts): array
@@ -32,10 +32,7 @@ class FirstnameMapper extends AbstractMapper
         return $parts;
     }
 
-    /**
-     * @param  string|AbstractPart  $part
-     */
-    protected function handleSinglePart($part): AbstractPart
+    protected function handleSinglePart(string|AbstractPart $part): AbstractPart
     {
         if ($part instanceof AbstractPart) {
             return $part;
@@ -44,6 +41,9 @@ class FirstnameMapper extends AbstractMapper
         return new Firstname($part);
     }
 
+    /**
+     * @param  array<int, AbstractPart|string>  $parts
+     */
     protected function findFirstnamePosition(array $parts): ?int
     {
         $pos = null;
@@ -72,6 +72,9 @@ class FirstnameMapper extends AbstractMapper
         return $pos;
     }
 
+    /**
+     * @param  array<int, AbstractPart|string>  $parts
+     */
     protected function getStartIndex(array $parts): int
     {
         $index = $this->findFirstMapped(Salutation::class, $parts);

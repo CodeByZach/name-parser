@@ -10,9 +10,9 @@ use CodeByZach\NameParser\Part\Salutation;
 class FirstnameMapperTest extends AbstractMapperTestCase
 {
     /**
-     * @return array
+     * @return array<int, array<string, mixed>>
      */
-    public static function provider()
+    public static function provider(): array
     {
         return [
             [
@@ -62,7 +62,7 @@ class FirstnameMapperTest extends AbstractMapperTestCase
         ];
     }
 
-    protected function getMapper()
+    protected function getMapper(): FirstnameMapper
     {
         return new FirstnameMapper();
     }

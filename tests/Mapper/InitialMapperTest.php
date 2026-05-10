@@ -10,9 +10,9 @@ use CodeByZach\NameParser\Part\Salutation;
 class InitialMapperTest extends AbstractMapperTestCase
 {
     /**
-     * @return array
+     * @return array<int, array<string, mixed>>
      */
-    public static function provider()
+    public static function provider(): array
     {
         return [
             [
@@ -102,7 +102,7 @@ class InitialMapperTest extends AbstractMapperTestCase
         ];
     }
 
-    protected function getMapper($maxCombined = 2, $matchLastPart = false)
+    protected function getMapper(int $maxCombined = 2, bool $matchLastPart = false): InitialMapper
     {
         return new InitialMapper($maxCombined, $matchLastPart);
     }

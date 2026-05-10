@@ -9,12 +9,14 @@ class Name
     private const PARTS_NAMESPACE = 'CodeByZach\NameParser\Part';
 
     /**
-     * @var list<AbstractPart|string> the parts that make up this name
+     * @var array<int, AbstractPart|string> the parts that make up this name
      */
     protected array $parts = [];
 
     /**
      * constructor takes the array of parts this name consists of
+     *
+     * @param  array<int, AbstractPart|string>|null  $parts
      */
     public function __construct(?array $parts = null)
     {
@@ -31,6 +33,7 @@ class Name
     /**
      * set the parts this name consists of
      *
+     * @param  array<int, AbstractPart|string>  $parts
      * @return $this
      */
     public function setParts(array $parts): Name
@@ -42,12 +45,17 @@ class Name
 
     /**
      * get the parts this name consists of
+     *
+     * @return array<int, AbstractPart|string>
      */
     public function getParts(): array
     {
         return $this->parts;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getAll(bool $format = false): array
     {
         $results = [];
@@ -63,7 +71,9 @@ class Name
 
         foreach ($keys as $key => $args) {
             $method = sprintf('get%s', ucfirst($key));
-            if ($value = call_user_func_array([$this, $method], $args)) {
+            /** @var callable(): string $callable */
+            $callable = [$this, $method];
+            if ($value = $callable(...$args)) {
                 $results[$key] = $value;
             }
         }

@@ -9,9 +9,9 @@ use CodeByZach\NameParser\Part\Salutation;
 class NicknameMapperTest extends AbstractMapperTestCase
 {
     /**
-     * @return array
+     * @return array<int, array<string, mixed>>
      */
-    public static function provider()
+    public static function provider(): array
     {
         return [
             [
@@ -110,7 +110,7 @@ class NicknameMapperTest extends AbstractMapperTestCase
         ];
     }
 
-    protected function getMapper()
+    protected function getMapper(): NicknameMapper
     {
         return new NicknameMapper([
             '[' => ']',

@@ -11,9 +11,9 @@ use CodeByZach\NameParser\Part\Suffix;
 class SuffixMapperTest extends AbstractMapperTestCase
 {
     /**
-     * @return array
+     * @return array<int, array<string, mixed>>
      */
-    public static function provider()
+    public static function provider(): array
     {
         return [
             [
@@ -156,7 +156,7 @@ class SuffixMapperTest extends AbstractMapperTestCase
         ];
     }
 
-    protected function getMapper($matchSinglePart = false, $reservedParts = 2)
+    protected function getMapper(bool $matchSinglePart = false, int $reservedParts = 2): SuffixMapper
     {
         $english = new English();
 

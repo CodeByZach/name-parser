@@ -10,9 +10,9 @@ use CodeByZach\NameParser\Part\Salutation;
 class SalutationMapperTest extends AbstractMapperTestCase
 {
     /**
-     * @return array
+     * @return array<int, array<string, mixed>>
      */
-    public static function provider()
+    public static function provider(): array
     {
         return [
             [
@@ -52,7 +52,7 @@ class SalutationMapperTest extends AbstractMapperTestCase
         ];
     }
 
-    protected function getMapper()
+    protected function getMapper(): SalutationMapper
     {
         $english = new English();
 
