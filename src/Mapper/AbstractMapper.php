@@ -8,16 +8,13 @@ abstract class AbstractMapper
 {
     /**
      * implements the mapping of parts
-     *
-     * @param  array  $parts  - the name parts
-     * @return array $parts - the mapped parts
      */
-    abstract public function map(array $parts);
+    abstract public function map(array $parts): array;
 
     /**
      * checks if there are still unmapped parts left before the given position
      */
-    protected function hasUnmappedPartsBefore(array $parts, $index): bool
+    protected function hasUnmappedPartsBefore(array $parts, int $index): bool
     {
         foreach ($parts as $k => $part) {
             if ($k === $index) {
@@ -32,10 +29,7 @@ abstract class AbstractMapper
         return false;
     }
 
-    /**
-     * @return int|bool
-     */
-    protected function findFirstMapped(string $type, array $parts)
+    protected function findFirstMapped(string $type, array $parts): int|false
     {
         $total = count($parts);
 
@@ -50,11 +44,8 @@ abstract class AbstractMapper
 
     /**
      * get the registry lookup key for the given word
-     *
-     * @param  string  $word  the word
-     * @return string the key
      */
-    protected function getKey($word): string
+    protected function getKey(string $word): string
     {
         return strtolower(str_replace('.', '', $word));
     }

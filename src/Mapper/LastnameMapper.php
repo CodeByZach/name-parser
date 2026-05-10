@@ -11,15 +11,13 @@ use CodeByZach\NameParser\Part\Suffix;
 
 class LastnameMapper extends AbstractMapper
 {
-    protected $prefixes = [];
-
-    protected $matchSinglePart = false;
-
-    public function __construct(array $prefixes, bool $matchSinglePart = false)
-    {
-        $this->prefixes = $prefixes;
-        $this->matchSinglePart = $matchSinglePart;
-    }
+    /**
+     * @param  array<string, string>  $prefixes
+     */
+    public function __construct(
+        protected array $prefixes,
+        protected bool $matchSinglePart = false,
+    ) {}
 
     /**
      * map lastnames in the parts array
@@ -27,6 +25,7 @@ class LastnameMapper extends AbstractMapper
      * @param  array  $parts  the name parts
      * @return array the mapped parts
      */
+    #[\Override]
     public function map(array $parts): array
     {
         if (! $this->matchSinglePart && count($parts) < 2) {

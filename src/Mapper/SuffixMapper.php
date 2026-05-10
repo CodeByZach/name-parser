@@ -7,18 +7,14 @@ use CodeByZach\NameParser\Part\Suffix;
 
 class SuffixMapper extends AbstractMapper
 {
-    protected $suffixes = [];
-
-    protected $matchSinglePart = false;
-
-    protected $reservedParts = 2;
-
-    public function __construct(array $suffixes, bool $matchSinglePart = false, int $reservedParts = 2)
-    {
-        $this->suffixes = $suffixes;
-        $this->matchSinglePart = $matchSinglePart;
-        $this->reservedParts = $reservedParts;
-    }
+    /**
+     * @param  array<string, string>  $suffixes
+     */
+    public function __construct(
+        protected array $suffixes,
+        protected bool $matchSinglePart = false,
+        protected int $reservedParts = 2,
+    ) {}
 
     /**
      * map suffixes in the parts array
@@ -26,6 +22,7 @@ class SuffixMapper extends AbstractMapper
      * @param  array  $parts  the name parts
      * @return array the mapped parts
      */
+    #[\Override]
     public function map(array $parts): array
     {
         if ($this->isMatchingSinglePart($parts)) {

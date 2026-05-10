@@ -16,6 +16,7 @@ class FirstnameMapper extends AbstractMapper
      * @param  array  $parts  the parts
      * @return array the mapped parts
      */
+    #[\Override]
     public function map(array $parts): array
     {
         if (count($parts) < 2) {

@@ -4,7 +4,7 @@ namespace CodeByZach\NameParser\Part;
 
 class LastnamePrefix extends Lastname
 {
-    protected $normalized = '';
+    protected string $normalized;
 
     public function __construct(string $value, ?string $normalized = null)
     {
@@ -17,6 +17,7 @@ class LastnamePrefix extends Lastname
      * if this is a lastname prefix, look up normalized version from registry
      * otherwise camelcase the lastname
      */
+    #[\Override]
     public function normalize(): string
     {
         return $this->normalized;

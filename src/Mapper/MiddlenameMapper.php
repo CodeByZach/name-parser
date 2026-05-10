@@ -9,12 +9,9 @@ use CodeByZach\NameParser\Part\Middlename;
 
 class MiddlenameMapper extends AbstractMapper
 {
-    protected $mapWithoutLastname = false;
-
-    public function __construct(bool $mapWithoutLastname = false)
-    {
-        $this->mapWithoutLastname = $mapWithoutLastname;
-    }
+    public function __construct(
+        protected bool $mapWithoutLastname = false,
+    ) {}
 
     /**
      * map middlenames in the parts array
@@ -22,6 +19,7 @@ class MiddlenameMapper extends AbstractMapper
      * @param  array  $parts  the name parts
      * @return array the mapped parts
      */
+    #[\Override]
     public function map(array $parts): array
     {
         // If we don't expect a lastname, match a mimimum of 2 parts

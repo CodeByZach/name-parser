@@ -13,35 +13,26 @@ use CodeByZach\NameParser\Mapper\SuffixMapper;
 
 class Parser
 {
-    /**
-     * @var string
-     */
-    protected $whitespace = " \r\n\t";
+    protected string $whitespace = " \r\n\t";
 
     /**
-     * @var array
+     * @var list<\CodeByZach\NameParser\Mapper\AbstractMapper>
      */
-    protected $mappers = [];
+    protected array $mappers = [];
 
     /**
-     * @var array
+     * @var list<LanguageInterface>
      */
-    protected $languages = [];
+    protected array $languages = [];
 
     /**
-     * @var array
+     * @var array<string, string>
      */
-    protected $nicknameDelimiters = [];
+    protected array $nicknameDelimiters = [];
 
-    /**
-     * @var int
-     */
-    protected $maxSalutationIndex = 0;
+    protected int $maxSalutationIndex = 0;
 
-    /**
-     * @var int
-     */
-    protected $maxCombinedInitials = 2;
+    protected int $maxCombinedInitials = 2;
 
     public function __construct(array $languages = [])
     {

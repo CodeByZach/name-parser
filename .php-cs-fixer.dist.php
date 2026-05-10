@@ -15,6 +15,11 @@ return (new PhpCsFixer\Config())
         'array_syntax' => ['syntax' => 'short'],
         'blank_line_after_namespace' => true,
         'no_extra_blank_lines' => true,
+        'phpdoc_line_span' => [
+            'property' => 'multi',
+            'method' => 'multi',
+            'const' => 'multi',
+        ],
     ])
     ->setFinder($finder)
     ->setCacheFile(__DIR__.'/.php-cs-fixer.cache');

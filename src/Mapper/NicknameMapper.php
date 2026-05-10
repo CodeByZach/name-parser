@@ -8,9 +8,9 @@ use CodeByZach\NameParser\Part\Nickname;
 class NicknameMapper extends AbstractMapper
 {
     /**
-     * @var array
+     * @var array<string, string>
      */
-    protected $delimiters = [
+    protected array $delimiters = [
         '[' => ']',
         '{' => '}',
         '(' => ')',
@@ -19,6 +19,9 @@ class NicknameMapper extends AbstractMapper
         '\'' => '\'',
     ];
 
+    /**
+     * @param  array<string, string>  $delimiters
+     */
     public function __construct(array $delimiters = [])
     {
         if (! empty($delimiters)) {
@@ -32,6 +35,7 @@ class NicknameMapper extends AbstractMapper
      * @param  array  $parts  the name parts
      * @return array the mapped parts
      */
+    #[\Override]
     public function map(array $parts): array
     {
         $isEncapsulated = false;

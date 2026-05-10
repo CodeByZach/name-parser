@@ -10,15 +10,10 @@ use CodeByZach\NameParser\Part\Initial;
  */
 class InitialMapper extends AbstractMapper
 {
-    protected $matchLastPart = false;
-
-    private $combinedMax = 2;
-
-    public function __construct(int $combinedMax = 2, bool $matchLastPart = false)
-    {
-        $this->matchLastPart = $matchLastPart;
-        $this->combinedMax = $combinedMax;
-    }
+    public function __construct(
+        private int $combinedMax = 2,
+        protected bool $matchLastPart = false,
+    ) {}
 
     /**
      * map intials in parts array
@@ -26,6 +21,7 @@ class InitialMapper extends AbstractMapper
      * @param  array  $parts  the name parts
      * @return array the mapped parts
      */
+    #[\Override]
     public function map(array $parts): array
     {
         $last = count($parts) - 1;

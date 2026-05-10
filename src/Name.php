@@ -9,9 +9,9 @@ class Name
     private const PARTS_NAMESPACE = 'CodeByZach\NameParser\Part';
 
     /**
-     * @var array the parts that make up this name
+     * @var list<AbstractPart|string> the parts that make up this name
      */
-    protected $parts = [];
+    protected array $parts = [];
 
     /**
      * constructor takes the array of parts this name consists of

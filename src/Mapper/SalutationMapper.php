@@ -7,15 +7,13 @@ use CodeByZach\NameParser\Part\Salutation;
 
 class SalutationMapper extends AbstractMapper
 {
-    protected $salutations = [];
-
-    protected $maxIndex = 0;
-
-    public function __construct(array $salutations, $maxIndex = 0)
-    {
-        $this->salutations = $salutations;
-        $this->maxIndex = $maxIndex;
-    }
+    /**
+     * @param  array<string, string>  $salutations
+     */
+    public function __construct(
+        protected array $salutations,
+        protected int $maxIndex = 0,
+    ) {}
 
     /**
      * map salutations in the parts array
@@ -23,6 +21,7 @@ class SalutationMapper extends AbstractMapper
      * @param  array  $parts  the name parts
      * @return array the mapped parts
      */
+    #[\Override]
     public function map(array $parts): array
     {
         $max = ($this->maxIndex > 0) ? $this->maxIndex : floor(count($parts) / 2);

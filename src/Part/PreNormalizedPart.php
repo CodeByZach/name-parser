@@ -4,7 +4,7 @@ namespace CodeByZach\NameParser\Part;
 
 abstract class PreNormalizedPart extends AbstractPart
 {
-    protected $normalized = '';
+    protected string $normalized;
 
     public function __construct(string $value, ?string $normalized = null)
     {
@@ -17,6 +17,7 @@ abstract class PreNormalizedPart extends AbstractPart
      * if this is a lastname prefix, look up normalized version from registry
      * otherwise camelcase the lastname
      */
+    #[\Override]
     public function normalize(): string
     {
         return $this->normalized;
