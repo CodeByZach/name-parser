@@ -5,6 +5,9 @@ namespace CodeByZach\NameParser\Mapper;
 use CodeByZach\NameParser\Part\AbstractPart;
 use CodeByZach\NameParser\Part\Suffix;
 
+/**
+ * @phpstan-import-type PartArray from AbstractMapper
+ */
 class SuffixMapper extends AbstractMapper
 {
     /**
@@ -17,10 +20,8 @@ class SuffixMapper extends AbstractMapper
     ) {}
 
     /**
-     * map suffixes in the parts array
-     *
-     * @param  array<int, AbstractPart|string>  $parts
-     * @return array<int, AbstractPart|string>
+     * @param  PartArray  $parts
+     * @return PartArray
      */
     #[\Override]
     public function map(array $parts): array
@@ -51,7 +52,7 @@ class SuffixMapper extends AbstractMapper
     }
 
     /**
-     * @param  array<int, AbstractPart|string>  $parts
+     * @param  PartArray  $parts
      */
     protected function isMatchingSinglePart(array $parts): bool
     {

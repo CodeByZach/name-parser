@@ -5,6 +5,9 @@ namespace CodeByZach\NameParser\Mapper;
 use CodeByZach\NameParser\Part\AbstractPart;
 use CodeByZach\NameParser\Part\Salutation;
 
+/**
+ * @phpstan-import-type PartArray from AbstractMapper
+ */
 class SalutationMapper extends AbstractMapper
 {
     /**
@@ -16,10 +19,8 @@ class SalutationMapper extends AbstractMapper
     ) {}
 
     /**
-     * map salutations in the parts array
-     *
-     * @param  array<int, AbstractPart|string>  $parts
-     * @return array<int, AbstractPart|string>
+     * @param  PartArray  $parts
+     * @return PartArray
      */
     #[\Override]
     public function map(array $parts): array
@@ -42,8 +43,8 @@ class SalutationMapper extends AbstractMapper
      * not only single-word matches but also combined matches with
      * subsequent words (parts).
      *
-     * @param  array<int, AbstractPart|string>  $parts
-     * @return array<int, AbstractPart|string>
+     * @param  PartArray  $parts
+     * @return PartArray
      */
     protected function substituteWithSalutation(array $parts, int $start): array
     {
@@ -77,7 +78,7 @@ class SalutationMapper extends AbstractMapper
      * the subset words
      *
      * @param  array<int, string>  $keys
-     * @param  array<int, AbstractPart|string>  $subset
+     * @param  PartArray  $subset
      *
      * @phpstan-assert-if-true array<int, string> $subset
      */

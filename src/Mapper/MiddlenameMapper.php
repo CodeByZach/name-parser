@@ -7,6 +7,9 @@ use CodeByZach\NameParser\Part\Firstname;
 use CodeByZach\NameParser\Part\Lastname;
 use CodeByZach\NameParser\Part\Middlename;
 
+/**
+ * @phpstan-import-type PartArray from AbstractMapper
+ */
 class MiddlenameMapper extends AbstractMapper
 {
     public function __construct(
@@ -14,10 +17,8 @@ class MiddlenameMapper extends AbstractMapper
     ) {}
 
     /**
-     * map middlenames in the parts array
-     *
-     * @param  array<int, AbstractPart|string>  $parts
-     * @return array<int, AbstractPart|string>
+     * @param  PartArray  $parts
+     * @return PartArray
      */
     #[\Override]
     public function map(array $parts): array
@@ -39,8 +40,8 @@ class MiddlenameMapper extends AbstractMapper
     }
 
     /**
-     * @param  array<int, AbstractPart|string>  $parts
-     * @return array<int, AbstractPart|string>
+     * @param  PartArray  $parts
+     * @return PartArray
      */
     protected function mapFrom(int $start, array $parts): array
     {

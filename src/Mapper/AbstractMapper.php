@@ -4,20 +4,23 @@ namespace CodeByZach\NameParser\Mapper;
 
 use CodeByZach\NameParser\Part\AbstractPart;
 
+/**
+ * @phpstan-type PartArray array<int, AbstractPart|string>
+ */
 abstract class AbstractMapper
 {
     /**
      * implements the mapping of parts
      *
-     * @param  array<int, AbstractPart|string>  $parts
-     * @return array<int, AbstractPart|string>
+     * @param  PartArray  $parts
+     * @return PartArray
      */
     abstract public function map(array $parts): array;
 
     /**
      * checks if there are still unmapped parts left before the given position
      *
-     * @param  array<int, AbstractPart|string>  $parts
+     * @param  PartArray  $parts
      */
     protected function hasUnmappedPartsBefore(array $parts, int $index): bool
     {
@@ -36,7 +39,7 @@ abstract class AbstractMapper
 
     /**
      * @param  class-string  $type
-     * @param  array<int, AbstractPart|string>  $parts
+     * @param  PartArray  $parts
      */
     protected function findFirstMapped(string $type, array $parts): int|false
     {

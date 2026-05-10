@@ -35,6 +35,27 @@ class Parser
     protected int $maxCombinedInitials = 2;
 
     /**
+     * memoized merge of all languages' lastname prefixes
+     *
+     * @var array<string, string>|null
+     */
+    private ?array $prefixes = null;
+
+    /**
+     * memoized merge of all languages' suffixes
+     *
+     * @var array<string, string>|null
+     */
+    private ?array $suffixes = null;
+
+    /**
+     * memoized merge of all languages' salutations
+     *
+     * @var array<string, string>|null
+     */
+    private ?array $salutations = null;
+
+    /**
      * @param  array<int, LanguageInterface>  $languages
      */
     public function __construct(array $languages = [])
@@ -172,6 +193,8 @@ class Parser
 
         $name = trim($name);
 
+        // preg_replace returns null on regex compile error; user-set whitespace
+        // characters might produce an invalid pattern, so fall back to the input.
         return preg_replace('/[' . preg_quote($whitespace, '/') . ']+/', ' ', $name) ?? $name;
     }
 
@@ -198,13 +221,7 @@ class Parser
      */
     protected function getPrefixes(): array
     {
-        $prefixes = [];
-
-        foreach ($this->languages as $language) {
-            $prefixes += $language->getLastnamePrefixes();
-        }
-
-        return $prefixes;
+        return $this->prefixes ??= $this->mergeFromLanguages('getLastnamePrefixes');
     }
 
     /**
@@ -212,13 +229,7 @@ class Parser
      */
     protected function getSuffixes(): array
     {
-        $suffixes = [];
-
-        foreach ($this->languages as $language) {
-            $suffixes += $language->getSuffixes();
-        }
-
-        return $suffixes;
+        return $this->suffixes ??= $this->mergeFromLanguages('getSuffixes');
     }
 
     /**
@@ -226,13 +237,22 @@ class Parser
      */
     protected function getSalutations(): array
     {
-        $salutations = [];
+        return $this->salutations ??= $this->mergeFromLanguages('getSalutations');
+    }
+
+    /**
+     * @param  'getSuffixes'|'getSalutations'|'getLastnamePrefixes'  $method
+     * @return array<string, string>
+     */
+    private function mergeFromLanguages(string $method): array
+    {
+        $merged = [];
 
         foreach ($this->languages as $language) {
-            $salutations += $language->getSalutations();
+            $merged += $language->$method();
         }
 
-        return $salutations;
+        return $merged;
     }
 
     /**

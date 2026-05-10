@@ -8,6 +8,9 @@ use CodeByZach\NameParser\Part\Initial;
 /**
  * single letter, possibly followed by a period
  */
+/**
+ * @phpstan-import-type PartArray from AbstractMapper
+ */
 class InitialMapper extends AbstractMapper
 {
     public function __construct(
@@ -16,10 +19,8 @@ class InitialMapper extends AbstractMapper
     ) {}
 
     /**
-     * map intials in parts array
-     *
-     * @param  array<int, AbstractPart|string>  $parts
-     * @return array<int, AbstractPart|string>
+     * @param  PartArray  $parts
+     * @return PartArray
      */
     #[\Override]
     public function map(array $parts): array

@@ -5,6 +5,9 @@ namespace CodeByZach\NameParser\Mapper;
 use CodeByZach\NameParser\Part\AbstractPart;
 use CodeByZach\NameParser\Part\Nickname;
 
+/**
+ * @phpstan-import-type PartArray from AbstractMapper
+ */
 class NicknameMapper extends AbstractMapper
 {
     /**
@@ -30,10 +33,8 @@ class NicknameMapper extends AbstractMapper
     }
 
     /**
-     * map nicknames in the parts array
-     *
-     * @param  array<int, AbstractPart|string>  $parts
-     * @return array<int, AbstractPart|string>
+     * @param  PartArray  $parts
+     * @return PartArray
      */
     #[\Override]
     public function map(array $parts): array

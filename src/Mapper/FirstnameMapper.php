@@ -8,13 +8,14 @@ use CodeByZach\NameParser\Part\Initial;
 use CodeByZach\NameParser\Part\Lastname;
 use CodeByZach\NameParser\Part\Salutation;
 
+/**
+ * @phpstan-import-type PartArray from AbstractMapper
+ */
 class FirstnameMapper extends AbstractMapper
 {
     /**
-     * map firstnames in parts array
-     *
-     * @param  array<int, AbstractPart|string>  $parts
-     * @return array<int, AbstractPart|string>
+     * @param  PartArray  $parts
+     * @return PartArray
      */
     #[\Override]
     public function map(array $parts): array
@@ -42,7 +43,7 @@ class FirstnameMapper extends AbstractMapper
     }
 
     /**
-     * @param  array<int, AbstractPart|string>  $parts
+     * @param  PartArray  $parts
      */
     protected function findFirstnamePosition(array $parts): ?int
     {
@@ -73,7 +74,7 @@ class FirstnameMapper extends AbstractMapper
     }
 
     /**
-     * @param  array<int, AbstractPart|string>  $parts
+     * @param  PartArray  $parts
      */
     protected function getStartIndex(array $parts): int
     {

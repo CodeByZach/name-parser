@@ -58,6 +58,7 @@ abstract class AbstractPart
             return $word;
         }
 
+        // preg_replace_callback returns null on regex error; fall back to the input.
         return preg_replace_callback('/[\p{L}0-9]+/ui', $this->camelcaseReplace(...), $word) ?? $word;
     }
 
