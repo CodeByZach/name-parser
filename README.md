@@ -1,11 +1,20 @@
-# THE ICONIC Name Parser
+# Name Parser
 
+<!--
 [![Build Status](https://travis-ci.org/theiconic/name-parser.svg?branch=master&t=201705161308)](https://travis-ci.org/theiconic/name-parser)
 [![Coverage Status](https://coveralls.io/repos/github/theiconic/name-parser/badge.svg?branch=master&t=201705161308)](https://coveralls.io/github/theiconic/name-parser?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/theiconic/name-parser/badges/quality-score.png?b=master&t=201705161308)](https://scrutinizer-ci.com/g/theiconic/name-parser/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/theiconic/name-parser/v/stable?t=201705161308)](https://packagist.org/packages/theiconic/name-parser)
 [![Total Downloads](https://poser.pugx.org/theiconic/name-parser/downloads?t=201705161308)](https://packagist.org/packages/theiconic/name-parser)
 [![License](https://poser.pugx.org/theiconic/name-parser/license?t=201705161308)](https://packagist.org/packages/theiconic/name-parser)
+-->
+
+> **Fork notice**: This is a maintained fork of [theiconic/name-parser](https://github.com/theiconic/name-parser),
+> which has been effectively dormant since ~2020. This fork targets PHP 8.3+
+> (tested through 8.5), ships expanded English dictionary entries, and uses
+> modernized tooling (PHPUnit 12, PHPStan 2, PHP-CS-Fixer, GitHub Actions).
+> The library is framework-neutral at runtime and integrates cleanly into
+> Laravel, Symfony, or vanilla PHP projects — no framework dependencies.
 
 ## Purpose
 This is a universal, language-independent name parser.
@@ -24,7 +33,7 @@ E.g. **Mr Anthony R Von Fange III** is parsed to
 - lastname: **von Fange**
 - suffix: **III**
 
-This package has been used by The Iconic in production for years,
+The original library was used by The Iconic in production for years,
 successfully processing hundreds of thousands of customer names.
 
 ## Features
@@ -60,12 +69,15 @@ This parser is able to handle name patterns with and without comma:
 ## Examples
 
 More than 60 different successfully parsed name patterns can be found in the
-[parser unit test](https://github.com/theiconic/name-parser/blob/master/tests/ParserTest.php#L12-L12).
+[parser unit test](https://github.com/CodeByZach/name-parser/blob/master/tests/ParserTest.php).
 
 ## Setup
-```$xslt
-composer require theiconic/name-parser
+
+```bash
+composer require codebyzach/name-parser
 ```
+
+Requires PHP 8.3 or newer (tested on 8.3, 8.4, and 8.5).
 
 ## Usage
 
@@ -73,7 +85,7 @@ composer require theiconic/name-parser
 ```php
 <?php
 
-$parser = new TheIconic\NameParser\Parser();
+$parser = new CodeByZach\NameParser\Parser();
 
 $name = $parser->parse($input);
 
@@ -90,6 +102,34 @@ print_r($name->getAll());
 echo $name;
 ```
 An empty string is returned for missing parts.
+
+### Laravel integration
+
+The library is framework-neutral and ships no Laravel-specific glue (no
+service provider, no facade). Bind it in your own `AppServiceProvider` if
+you want it resolvable from the container:
+
+```php
+// app/Providers/AppServiceProvider.php
+use CodeByZach\NameParser\Parser;
+
+public function register(): void
+{
+    $this->app->singleton(Parser::class);
+}
+```
+
+Then inject or resolve as usual:
+
+```php
+use CodeByZach\NameParser\Parser;
+
+public function store(Request $request, Parser $parser)
+{
+    $name = $parser->parse($request->input('full_name'));
+    // ...
+}
+```
 
 ### Special part retrieval features
 #### Explicit last name parts
@@ -125,27 +165,27 @@ echo $name->getFullName(); // J. Peter M. Schluter
 
 ### Setting Languages
 ```php
-$parser = new TheIconic\NameParser\Parser([
-    new TheIconic\NameParser\Language\English(), //default
-    new TheIconic\NameParser\Language\German(),
+$parser = new CodeByZach\NameParser\Parser([
+    new CodeByZach\NameParser\Language\English(), //default
+    new CodeByZach\NameParser\Language\German(),
 ])
 ```
 
 ### Setting nickname delimiters
 ```php
-$parser = new TheIconic\NameParser\Parser();
+$parser = new CodeByZach\NameParser\Parser();
 $parser->setNicknameDelimiters(['(' => ')']);
 ```
 
 ### Setting whitespace characters
 ```php
-$parser = new TheIconic\NameParser\Parser();
+$parser = new CodeByZach\NameParser\Parser();
 $parser->setWhitespace("\t _.");
 ```
 
 ### Limiting the position of salutations
 ```php
-$parser = new TheIconic\NameParser\Parser();
+$parser = new CodeByZach\NameParser\Parser();
 $parser->setMaxSalutationIndex(2);
 ```
 This will require salutations to appear within the
@@ -156,7 +196,7 @@ the first half of the name parts.
 
 ### Adjusting combined initials support
 ```php
-$parser = new TheIconic\NameParser\Parser();
+$parser = new CodeByZach\NameParser\Parser();
 $parser->setMaxCombinedInitials(3);
 ```
 Combined initials are combinations of several
@@ -248,6 +288,26 @@ gist.
 Of course this can also be used in more useful ways, e.g. to spell out
 abbreviated titles, like `Prof.` as `Professor` etc. .
 
+## Local development
+
+This repo uses [mise](https://mise.jdx.dev/) (or [asdf](https://asdf-vm.com/))
+for PHP version pinning via `.tool-versions`. After cloning:
+
+```bash
+mise install                 # installs the pinned PHP version
+composer install             # installs dev dependencies
+composer test                # run the test suite
+composer analyse             # run PHPStan
+composer lint                # check code style (dry-run)
+composer lint:fix            # apply code style fixes
+```
+
+## Contributors
+
+- **The Iconic** ([@theiconic](https://github.com/theiconic)) — original library author
+- **Zachary Miller** ([@CodeByZach](https://github.com/CodeByZach)) — fork maintainer
+
 ## License
 
-THE ICONIC Name Parser library for PHP is released under the MIT License.
+Released under the [MIT License](LICENSE). Original work © 2017 The Iconic;
+fork modifications © 2026 Zachary Miller (CodeByZach).

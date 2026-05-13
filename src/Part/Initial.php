@@ -1,14 +1,13 @@
 <?php
 
-namespace TheIconic\NameParser\Part;
+namespace CodeByZach\NameParser\Part;
 
 class Initial extends GivenNamePart
 {
     /**
      * uppercase the initial
-     *
-     * @return string
      */
+    #[\Override]
     public function normalize(): string
     {
         return strtoupper($this->getValue());

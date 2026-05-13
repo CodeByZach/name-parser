@@ -1,35 +1,35 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace CodeByZach\NameParser\Mapper;
 
-use TheIconic\NameParser\Part\AbstractPart;
-use TheIconic\NameParser\Part\Nickname;
+use CodeByZach\NameParser\Part\AbstractPart;
 
+/**
+ * @phpstan-type PartArray array<int, AbstractPart|string>
+ */
 abstract class AbstractMapper
 {
     /**
      * implements the mapping of parts
      *
-     * @param array $parts - the name parts
-     * @return array $parts - the mapped parts
+     * @param  PartArray  $parts
+     * @return PartArray
      */
-    abstract public function map(array $parts);
+    abstract public function map(array $parts): array;
 
     /**
      * checks if there are still unmapped parts left before the given position
      *
-     * @param array $parts
-     * @param $index
-     * @return bool
+     * @param  PartArray  $parts
      */
-    protected function hasUnmappedPartsBefore(array $parts, $index): bool
+    protected function hasUnmappedPartsBefore(array $parts, int $index): bool
     {
         foreach ($parts as $k => $part) {
             if ($k === $index) {
                 break;
             }
 
-            if (!($part instanceof AbstractPart)) {
+            if (! ($part instanceof AbstractPart)) {
                 return true;
             }
         }
@@ -38,11 +38,10 @@ abstract class AbstractMapper
     }
 
     /**
-     * @param string $type
-     * @param array $parts
-     * @return int|bool
+     * @param  class-string  $type
+     * @param  PartArray  $parts
      */
-    protected function findFirstMapped(string $type, array $parts)
+    protected function findFirstMapped(string $type, array $parts): int|false
     {
         $total = count($parts);
 
@@ -57,11 +56,8 @@ abstract class AbstractMapper
 
     /**
      * get the registry lookup key for the given word
-     *
-     * @param string $word the word
-     * @return string the key
      */
-    protected function getKey($word): string
+    protected function getKey(string $word): string
     {
         return strtolower(str_replace('.', '', $word));
     }

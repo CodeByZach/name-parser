@@ -1,18 +1,18 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace Tests\CodeByZach\NameParser\Mapper;
 
-use TheIconic\NameParser\Part\Salutation;
-use TheIconic\NameParser\Part\Firstname;
-use TheIconic\NameParser\Part\Middlename;
-use TheIconic\NameParser\Part\Lastname;
+use CodeByZach\NameParser\Mapper\MiddlenameMapper;
+use CodeByZach\NameParser\Part\Firstname;
+use CodeByZach\NameParser\Part\Lastname;
+use CodeByZach\NameParser\Part\Middlename;
 
-class MiddlenameMapperTest extends AbstractMapperTest
+class MiddlenameMapperTest extends AbstractMapperTestCase
 {
     /**
-     * @return array
+     * @return array<int, array<string, mixed>>
      */
-    public function provider()
+    public static function provider(): array
     {
         return [
             [
@@ -87,13 +87,13 @@ class MiddlenameMapperTest extends AbstractMapperTest
                     new Middlename('Tiberius'),
                 ],
                 'arguments' => [
-                    true
+                    true,
                 ],
             ],
         ];
     }
 
-    protected function getMapper($mapWithoutLastname = false)
+    protected function getMapper(bool $mapWithoutLastname = false): MiddlenameMapper
     {
         return new MiddlenameMapper($mapWithoutLastname);
     }

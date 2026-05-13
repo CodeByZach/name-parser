@@ -1,31 +1,28 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace CodeByZach\NameParser\Mapper;
 
-use TheIconic\NameParser\Part\AbstractPart;
-use TheIconic\NameParser\Part\Initial;
+use CodeByZach\NameParser\Part\AbstractPart;
+use CodeByZach\NameParser\Part\Initial;
 
 /**
  * single letter, possibly followed by a period
  */
+/**
+ * @phpstan-import-type PartArray from AbstractMapper
+ */
 class InitialMapper extends AbstractMapper
 {
-    protected $matchLastPart = false;
-
-    private $combinedMax = 2;
-
-    public function __construct(int $combinedMax = 2, bool $matchLastPart = false)
-    {
-        $this->matchLastPart = $matchLastPart;
-        $this->combinedMax = $combinedMax;
-    }
+    public function __construct(
+        private int $combinedMax = 2,
+        protected bool $matchLastPart = false,
+    ) {}
 
     /**
-     * map intials in parts array
-     *
-     * @param array $parts the name parts
-     * @return array the mapped parts
+     * @param  PartArray  $parts
+     * @return PartArray
      */
+    #[\Override]
     public function map(array $parts): array
     {
         $last = count($parts) - 1;
@@ -37,7 +34,7 @@ class InitialMapper extends AbstractMapper
                 continue;
             }
 
-            if (!$this->matchLastPart && $k === $last) {
+            if (! $this->matchLastPart && $k === $last) {
                 continue;
             }
 
@@ -45,14 +42,14 @@ class InitialMapper extends AbstractMapper
                 $stripped = str_replace('.', '', $part);
                 $length = strlen($stripped);
 
-                if (1 < $length && $length <= $this->combinedMax) {
+                if ($length > 1 && $length <= $this->combinedMax) {
                     array_splice($parts, $k, 1, str_split($stripped));
                     $last = count($parts) - 1;
                     $part = $parts[$k];
                 }
             }
 
-            if ($this->isInitial($part)) {
+            if (is_string($part) && $this->isInitial($part)) {
                 $parts[$k] = new Initial($part);
             }
         }
@@ -60,18 +57,14 @@ class InitialMapper extends AbstractMapper
         return $parts;
     }
 
-    /**
-     * @param string $part
-     * @return bool
-     */
     protected function isInitial(string $part): bool
     {
         $length = strlen($part);
 
-        if (1 === $length) {
+        if ($length === 1) {
             return true;
         }
 
-        return ($length === 2 && substr($part, -1) ===  '.');
+        return $length === 2 && substr($part, -1) === '.';
     }
 }

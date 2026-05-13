@@ -1,8 +1,5 @@
 <?php
 
-namespace TheIconic\NameParser\Part;
+namespace CodeByZach\NameParser\Part;
 
-class Suffix extends PreNormalizedPart
-{
-
-}
+class Suffix extends PreNormalizedPart {}

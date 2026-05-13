@@ -1,7 +1,5 @@
 <?php
 
-namespace TheIconic\NameParser\Part;
+namespace CodeByZach\NameParser\Part;
 
-class Lastname extends NamePart
-{
-}
+class Lastname extends NamePart {}

@@ -1,35 +1,37 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace CodeByZach\NameParser\Mapper;
 
-use TheIconic\NameParser\Part\AbstractPart;
-use TheIconic\NameParser\Part\Suffix;
+use CodeByZach\NameParser\Part\AbstractPart;
+use CodeByZach\NameParser\Part\Suffix;
 
+/**
+ * @phpstan-import-type PartArray from AbstractMapper
+ */
 class SuffixMapper extends AbstractMapper
 {
-    protected $suffixes = [];
-
-    protected $matchSinglePart = false;
-
-    protected $reservedParts = 2;
-
-    public function __construct(array $suffixes, bool $matchSinglePart = false, int $reservedParts = 2)
-    {
-        $this->suffixes = $suffixes;
-        $this->matchSinglePart = $matchSinglePart;
-        $this->reservedParts = $reservedParts;
-    }
+    /**
+     * @param  array<string, string>  $suffixes
+     */
+    public function __construct(
+        protected array $suffixes,
+        protected bool $matchSinglePart = false,
+        protected int $reservedParts = 2,
+    ) {}
 
     /**
-     * map suffixes in the parts array
-     *
-     * @param array $parts the name parts
-     * @return array the mapped parts
+     * @param  PartArray  $parts
+     * @return PartArray
      */
+    #[\Override]
     public function map(array $parts): array
     {
         if ($this->isMatchingSinglePart($parts)) {
-            $parts[0] = new Suffix($parts[0], $this->suffixes[$this->getKey($parts[0])]);
+            $first = $parts[0];
+            if (is_string($first)) {
+                $parts[0] = new Suffix($first, $this->suffixes[$this->getKey($first)]);
+            }
+
             return $parts;
         }
 
@@ -38,10 +40,11 @@ class SuffixMapper extends AbstractMapper
         for ($k = $start; $k > $this->reservedParts - 1; $k--) {
             $part = $parts[$k];
 
-            if (!$this->isSuffix($part)) {
+            if (! $this->isSuffix($part)) {
                 break;
             }
 
+            // isSuffix() guarantees $part is a string at this point
             $parts[$k] = new Suffix($part, $this->suffixes[$this->getKey($part)]);
         }
 
@@ -49,16 +52,15 @@ class SuffixMapper extends AbstractMapper
     }
 
     /**
-     * @param $parts
-     * @return bool
+     * @param  PartArray  $parts
      */
-    protected function isMatchingSinglePart($parts): bool
+    protected function isMatchingSinglePart(array $parts): bool
     {
-        if (!$this->matchSinglePart) {
+        if (! $this->matchSinglePart) {
             return false;
         }
 
-        if (1 !== count($parts)) {
+        if (count($parts) !== 1) {
             return false;
         }
 
@@ -66,15 +68,14 @@ class SuffixMapper extends AbstractMapper
     }
 
     /**
-     * @param $part
-     * @return bool
+     * @phpstan-assert-if-true string $part
      */
-    protected function isSuffix($part): bool
+    protected function isSuffix(AbstractPart|string $part): bool
     {
         if ($part instanceof AbstractPart) {
             return false;
         }
 
-        return (array_key_exists($this->getKey($part), $this->suffixes));
+        return array_key_exists($this->getKey($part), $this->suffixes);
     }
 }

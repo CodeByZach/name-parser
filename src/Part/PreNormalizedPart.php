@@ -1,12 +1,12 @@
 <?php
 
-namespace TheIconic\NameParser\Part;
+namespace CodeByZach\NameParser\Part;
 
 abstract class PreNormalizedPart extends AbstractPart
 {
-    protected $normalized = '';
+    protected string $normalized;
 
-    public function __construct(string $value, string $normalized = null)
+    public function __construct(string $value, ?string $normalized = null)
     {
         $this->normalized = $normalized ?? $value;
 
@@ -16,9 +16,8 @@ abstract class PreNormalizedPart extends AbstractPart
     /**
      * if this is a lastname prefix, look up normalized version from registry
      * otherwise camelcase the lastname
-     *
-     * @return string
      */
+    #[\Override]
     public function normalize(): string
     {
         return $this->normalized;

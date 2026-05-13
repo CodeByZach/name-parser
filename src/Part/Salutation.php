@@ -1,8 +1,5 @@
 <?php
 
-namespace TheIconic\NameParser\Part;
+namespace CodeByZach\NameParser\Part;
 
-class Salutation extends PreNormalizedPart
-{
-
-}
+class Salutation extends PreNormalizedPart {}

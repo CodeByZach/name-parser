@@ -1,16 +1,17 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace Tests\CodeByZach\NameParser\Mapper;
 
-use TheIconic\NameParser\Part\Salutation;
-use TheIconic\NameParser\Part\Nickname;
+use CodeByZach\NameParser\Mapper\NicknameMapper;
+use CodeByZach\NameParser\Part\Nickname;
+use CodeByZach\NameParser\Part\Salutation;
 
-class NicknameMapperTest extends AbstractMapperTest
+class NicknameMapperTest extends AbstractMapperTestCase
 {
     /**
-     * @return array
+     * @return array<int, array<string, mixed>>
      */
-    public function provider()
+    public static function provider(): array
     {
         return [
             [
@@ -109,7 +110,7 @@ class NicknameMapperTest extends AbstractMapperTest
         ];
     }
 
-    protected function getMapper()
+    protected function getMapper(): NicknameMapper
     {
         return new NicknameMapper([
             '[' => ']',
@@ -117,7 +118,7 @@ class NicknameMapperTest extends AbstractMapperTest
             '(' => ')',
             '<' => '>',
             '"' => '"',
-            '\'' => '\''
+            '\'' => '\'',
         ]);
     }
 }

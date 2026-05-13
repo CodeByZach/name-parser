@@ -1,16 +1,19 @@
 <?php
 
-namespace TheIconic\NameParser;
+namespace Tests\CodeByZach\NameParser;
 
+use CodeByZach\NameParser\Language\German;
+use CodeByZach\NameParser\Name;
+use CodeByZach\NameParser\Parser;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use TheIconic\NameParser\Language\German;
 
 class GermanParserTest extends TestCase
 {
     /**
-     * @return array
+     * @return array<int, array{string, array<string, string>}>
      */
-    public function provider()
+    public static function provider(): array
     {
         return [
             [
@@ -18,7 +21,7 @@ class GermanParserTest extends TestCase
                 [
                     'salutation' => 'Herr',
                     'lastname' => 'Schmidt',
-                ]
+                ],
             ],
             [
                 'Frau Maria Lange',
@@ -26,7 +29,7 @@ class GermanParserTest extends TestCase
                     'salutation' => 'Frau',
                     'firstname' => 'Maria',
                     'lastname' => 'Lange',
-                ]
+                ],
             ],
             [
                 'Hr. Juergen von der Lippe',
@@ -34,7 +37,7 @@ class GermanParserTest extends TestCase
                     'salutation' => 'Herr',
                     'firstname' => 'Juergen',
                     'lastname' => 'von der Lippe',
-                ]
+                ],
             ],
             [
                 'Fr. Charlotte von Stein',
@@ -42,21 +45,19 @@ class GermanParserTest extends TestCase
                     'salutation' => 'Frau',
                     'firstname' => 'Charlotte',
                     'lastname' => 'von Stein',
-                ]
+                ],
             ],
         ];
     }
 
     /**
-     * @dataProvider provider
-     *
-     * @param $input
-     * @param $expectation
+     * @param  array<string, string>  $expectation
      */
-    public function testParse($input, $expectation)
+    #[DataProvider('provider')]
+    public function testParse(string $input, array $expectation): void
     {
         $parser = new Parser([
-            new German()
+            new German(),
         ]);
         $name = $parser->parse($input);
 

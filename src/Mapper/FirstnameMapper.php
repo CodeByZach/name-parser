@@ -1,21 +1,23 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace CodeByZach\NameParser\Mapper;
 
-use TheIconic\NameParser\Part\AbstractPart;
-use TheIconic\NameParser\Part\Firstname;
-use TheIconic\NameParser\Part\Lastname;
-use TheIconic\NameParser\Part\Initial;
-use TheIconic\NameParser\Part\Salutation;
+use CodeByZach\NameParser\Part\AbstractPart;
+use CodeByZach\NameParser\Part\Firstname;
+use CodeByZach\NameParser\Part\Initial;
+use CodeByZach\NameParser\Part\Lastname;
+use CodeByZach\NameParser\Part\Salutation;
 
+/**
+ * @phpstan-import-type PartArray from AbstractMapper
+ */
 class FirstnameMapper extends AbstractMapper
 {
     /**
-     * map firstnames in parts array
-     *
-     * @param array $parts the parts
-     * @return array the mapped parts
+     * @param  PartArray  $parts
+     * @return PartArray
      */
+    #[\Override]
     public function map(array $parts): array
     {
         if (count($parts) < 2) {
@@ -24,18 +26,14 @@ class FirstnameMapper extends AbstractMapper
 
         $pos = $this->findFirstnamePosition($parts);
 
-        if (null !== $pos) {
+        if ($pos !== null) {
             $parts[$pos] = new Firstname($parts[$pos]);
         }
 
         return $parts;
     }
 
-    /**
-     * @param $part
-     * @return Firstname
-     */
-    protected function handleSinglePart($part): AbstractPart
+    protected function handleSinglePart(string|AbstractPart $part): AbstractPart
     {
         if ($part instanceof AbstractPart) {
             return $part;
@@ -45,8 +43,7 @@ class FirstnameMapper extends AbstractMapper
     }
 
     /**
-     * @param array $parts
-     * @return int|null
+     * @param  PartArray  $parts
      */
     protected function findFirstnamePosition(array $parts): ?int
     {
@@ -62,7 +59,7 @@ class FirstnameMapper extends AbstractMapper
                 break;
             }
 
-            if ($part instanceof Initial && null === $pos) {
+            if ($part instanceof Initial && $pos === null) {
                 $pos = $k;
             }
 
@@ -77,14 +74,13 @@ class FirstnameMapper extends AbstractMapper
     }
 
     /**
-     * @param array $parts
-     * @return int
+     * @param  PartArray  $parts
      */
     protected function getStartIndex(array $parts): int
     {
         $index = $this->findFirstMapped(Salutation::class, $parts);
 
-        if (false === $index) {
+        if ($index === false) {
             return 0;
         }
 

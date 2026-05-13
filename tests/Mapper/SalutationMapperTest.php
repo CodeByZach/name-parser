@@ -1,18 +1,18 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace Tests\CodeByZach\NameParser\Mapper;
 
-use TheIconic\NameParser\Language\English;
-use TheIconic\NameParser\Part\Salutation;
-use TheIconic\NameParser\Part\Firstname;
-use TheIconic\NameParser\Part\Lastname;
+use CodeByZach\NameParser\Language\English;
+use CodeByZach\NameParser\Mapper\SalutationMapper;
+use CodeByZach\NameParser\Part\Firstname;
+use CodeByZach\NameParser\Part\Salutation;
 
-class SalutationMapperTest extends AbstractMapperTest
+class SalutationMapperTest extends AbstractMapperTestCase
 {
     /**
-     * @return array
+     * @return array<int, array<string, mixed>>
      */
-    public function provider()
+    public static function provider(): array
     {
         return [
             [
@@ -52,7 +52,7 @@ class SalutationMapperTest extends AbstractMapperTest
         ];
     }
 
-    protected function getMapper()
+    protected function getMapper(): SalutationMapper
     {
         $english = new English();
 

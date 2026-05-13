@@ -1,27 +1,26 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace CodeByZach\NameParser\Mapper;
 
-use TheIconic\NameParser\Part\AbstractPart;
-use TheIconic\NameParser\Part\Firstname;
-use TheIconic\NameParser\Part\Lastname;
-use TheIconic\NameParser\Part\Middlename;
+use CodeByZach\NameParser\Part\AbstractPart;
+use CodeByZach\NameParser\Part\Firstname;
+use CodeByZach\NameParser\Part\Lastname;
+use CodeByZach\NameParser\Part\Middlename;
 
+/**
+ * @phpstan-import-type PartArray from AbstractMapper
+ */
 class MiddlenameMapper extends AbstractMapper
 {
-    protected $mapWithoutLastname = false;
-
-    public function __construct(bool $mapWithoutLastname = false)
-    {
-        $this->mapWithoutLastname = $mapWithoutLastname;
-    }
+    public function __construct(
+        protected bool $mapWithoutLastname = false,
+    ) {}
 
     /**
-     * map middlenames in the parts array
-     *
-     * @param array $parts the name parts
-     * @return array the mapped parts
+     * @param  PartArray  $parts
+     * @return PartArray
      */
+    #[\Override]
     public function map(array $parts): array
     {
         // If we don't expect a lastname, match a mimimum of 2 parts
@@ -33,7 +32,7 @@ class MiddlenameMapper extends AbstractMapper
 
         $start = $this->findFirstMapped(Firstname::class, $parts);
 
-        if (false === $start) {
+        if ($start === false) {
             return $parts;
         }
 
@@ -41,11 +40,10 @@ class MiddlenameMapper extends AbstractMapper
     }
 
     /**
-     * @param $start
-     * @param $parts
-     * @return mixed
+     * @param  PartArray  $parts
+     * @return PartArray
      */
-    protected function mapFrom($start, $parts): array
+    protected function mapFrom(int $start, array $parts): array
     {
         // If we don't expect a lastname, include the last part,
         // otherwise skip the last (-1) because it should be a lastname

@@ -1,25 +1,48 @@
 {
-    "name": "theiconic/name-parser",
+    "name": "codebyzach/name-parser",
     "description": "PHP library for parsing a string containing a full name into its parts",
     "type": "library",
     "license": "MIT",
     "authors": [
+        {
+            "name": "Zachary Miller",
+            "email": "codebyzach@gmail.com"
+        },
         {
             "name": "The Iconic",
             "email": "engineering@theiconic.com.au"
         }
     ],
     "require": {
-        "php": ">=7.1"
+        "php": "^8.3",
+        "ext-mbstring": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.0",
-        "php-coveralls/php-coveralls": "^2.1",
-        "php-mock/php-mock-phpunit": "^2.1"
+        "friendsofphp/php-cs-fixer": "^3.64",
+        "php-mock/php-mock-phpunit": "^2.15",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^12.0"
     },
     "autoload": {
         "psr-4": {
-            "TheIconic\\NameParser\\": ["src/", "tests/"]
+            "CodeByZach\\NameParser\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\CodeByZach\\NameParser\\": "tests/"
+        }
+    },
+    "scripts": {
+        "analyse": "phpstan analyse",
+        "lint": "php-cs-fixer fix --dry-run --diff",
+        "lint:fix": "php-cs-fixer fix",
+        "test": "phpunit"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
         }
     }
 }

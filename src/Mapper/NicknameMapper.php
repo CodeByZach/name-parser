@@ -1,37 +1,42 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace CodeByZach\NameParser\Mapper;
 
-use TheIconic\NameParser\Part\AbstractPart;
-use TheIconic\NameParser\Part\Nickname;
+use CodeByZach\NameParser\Part\AbstractPart;
+use CodeByZach\NameParser\Part\Nickname;
 
+/**
+ * @phpstan-import-type PartArray from AbstractMapper
+ */
 class NicknameMapper extends AbstractMapper
 {
     /**
-     * @var array
+     * @var array<string, string>
      */
-    protected $delimiters = [
+    protected array $delimiters = [
         '[' => ']',
         '{' => '}',
         '(' => ')',
         '<' => '>',
         '"' => '"',
-        '\'' => '\''
+        '\'' => '\'',
     ];
 
+    /**
+     * @param  array<string, string>  $delimiters
+     */
     public function __construct(array $delimiters = [])
     {
-        if (!empty($delimiters)) {
+        if (! empty($delimiters)) {
             $this->delimiters = $delimiters;
         }
     }
 
     /**
-     * map nicknames in the parts array
-     *
-     * @param array $parts the name parts
-     * @return array the mapped parts
+     * @param  PartArray  $parts
+     * @return PartArray
      */
+    #[\Override]
     public function map(array $parts): array
     {
         $isEncapsulated = false;
@@ -51,7 +56,7 @@ class NicknameMapper extends AbstractMapper
                 $closingDelimiter = $this->delimiters[$matches[1]];
             }
 
-            if (!$isEncapsulated) {
+            if (! $isEncapsulated) {
                 continue;
             }
 
@@ -66,10 +71,7 @@ class NicknameMapper extends AbstractMapper
         return $parts;
     }
 
-    /**
-     * @return string
-     */
-    protected function buildRegexp()
+    protected function buildRegexp(): string
     {
         $regexp = '/^([';
 

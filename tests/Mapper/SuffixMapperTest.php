@@ -1,18 +1,19 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace Tests\CodeByZach\NameParser\Mapper;
 
-use TheIconic\NameParser\Language\English;
-use TheIconic\NameParser\Part\Lastname;
-use TheIconic\NameParser\Part\Firstname;
-use TheIconic\NameParser\Part\Suffix;
+use CodeByZach\NameParser\Language\English;
+use CodeByZach\NameParser\Mapper\SuffixMapper;
+use CodeByZach\NameParser\Part\Firstname;
+use CodeByZach\NameParser\Part\Lastname;
+use CodeByZach\NameParser\Part\Suffix;
 
-class SuffixMapperTest extends AbstractMapperTest
+class SuffixMapperTest extends AbstractMapperTestCase
 {
     /**
-     * @return array
+     * @return array<int, array<string, mixed>>
      */
-    public function provider()
+    public static function provider(): array
     {
         return [
             [
@@ -28,10 +29,10 @@ class SuffixMapperTest extends AbstractMapperTest
                     'Blueberg',
                     new Suffix('PhD'),
                 ],
-                [
+                'arguments' => [
                     'matchSinglePart' => false,
                     'reservedParts' => 2,
-                ]
+                ],
             ],
             [
                 'input' => [
@@ -44,10 +45,10 @@ class SuffixMapperTest extends AbstractMapperTest
                     'Alfred',
                     new Suffix('III'),
                 ],
-                [
+                'arguments' => [
                     'matchSinglePart' => false,
                     'reservedParts' => 2,
-                ]
+                ],
             ],
             [
                 'input' => [
@@ -60,10 +61,10 @@ class SuffixMapperTest extends AbstractMapperTest
                     new Lastname('Smith'),
                     new Suffix('Senior'),
                 ],
-                [
+                'arguments' => [
                     'matchSinglePart' => false,
                     'reservedParts' => 2,
-                ]
+                ],
             ],
             [
                 'input' => [
@@ -76,10 +77,10 @@ class SuffixMapperTest extends AbstractMapperTest
                     new Firstname('James'),
                     'Norrington',
                 ],
-                [
+                'arguments' => [
                     'matchSinglePart' => false,
                     'reservedParts' => 2,
-                ]
+                ],
             ],
             [
                 'input' => [
@@ -92,10 +93,10 @@ class SuffixMapperTest extends AbstractMapperTest
                     new Firstname('James'),
                     new Lastname('Norrington'),
                 ],
-                [
+                'arguments' => [
                     'matchSinglePart' => false,
                     'reservedParts' => 2,
-                ]
+                ],
             ],
             [
                 'input' => [
@@ -108,10 +109,10 @@ class SuffixMapperTest extends AbstractMapperTest
                     'Norrington',
                     new Suffix('Senior'),
                 ],
-                [
+                'arguments' => [
                     false,
                     2,
-                ]
+                ],
             ],
             [
                 'input' => [
@@ -122,10 +123,10 @@ class SuffixMapperTest extends AbstractMapperTest
                     'Norrington',
                     'Senior',
                 ],
-                [
+                'arguments' => [
                     false,
                     2,
-                ]
+                ],
             ],
             [
                 'input' => [
@@ -136,10 +137,10 @@ class SuffixMapperTest extends AbstractMapperTest
                     new Lastname('Norrington'),
                     new Suffix('Senior'),
                 ],
-                [
+                'arguments' => [
                     false,
                     1,
-                ]
+                ],
             ],
             [
                 'input' => [
@@ -148,14 +149,14 @@ class SuffixMapperTest extends AbstractMapperTest
                 'expectation' => [
                     new Suffix('Senior'),
                 ],
-                [
+                'arguments' => [
                     true,
-                ]
+                ],
             ],
         ];
     }
 
-    protected function getMapper($matchSinglePart = false, $reservedParts = 2)
+    protected function getMapper(bool $matchSinglePart = false, int $reservedParts = 2): SuffixMapper
     {
         $english = new English();
 

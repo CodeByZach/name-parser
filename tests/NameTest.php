@@ -1,20 +1,22 @@
 <?php
 
-namespace TheIconic\NameParser;
+namespace Tests\CodeByZach\NameParser;
 
+use CodeByZach\NameParser\Name;
+use CodeByZach\NameParser\Parser;
+use CodeByZach\NameParser\Part\Firstname;
+use CodeByZach\NameParser\Part\Initial;
+use CodeByZach\NameParser\Part\Lastname;
+use CodeByZach\NameParser\Part\LastnamePrefix;
+use CodeByZach\NameParser\Part\Middlename;
+use CodeByZach\NameParser\Part\Nickname;
+use CodeByZach\NameParser\Part\Salutation;
+use CodeByZach\NameParser\Part\Suffix;
 use PHPUnit\Framework\TestCase;
-use TheIconic\NameParser\Part\Firstname;
-use TheIconic\NameParser\Part\Initial;
-use TheIconic\NameParser\Part\Lastname;
-use TheIconic\NameParser\Part\LastnamePrefix;
-use TheIconic\NameParser\Part\Middlename;
-use TheIconic\NameParser\Part\Nickname;
-use TheIconic\NameParser\Part\Salutation;
-use TheIconic\NameParser\Part\Suffix;
 
 class NameTest extends TestCase
 {
-    public function testToString()
+    public function testToString(): void
     {
         $parts = [
             new Salutation('Mr', 'Mr.'),
@@ -32,7 +34,7 @@ class NameTest extends TestCase
         $this->assertSame('Mr. James (Jim) Morgan T. Smith I', (string) $name);
     }
 
-    public function testGetNickname()
+    public function testGetNickname(): void
     {
         $name = new Name([
             new Nickname('Jim'),
@@ -42,7 +44,7 @@ class NameTest extends TestCase
         $this->assertSame('(Jim)', $name->getNickname(true));
     }
 
-    public function testGettingLastnameAndLastnamePrefixSeparately()
+    public function testGettingLastnameAndLastnamePrefixSeparately(): void
     {
         $name = new Name([
             new Firstname('Frank'),

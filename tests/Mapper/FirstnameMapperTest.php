@@ -1,17 +1,18 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace Tests\CodeByZach\NameParser\Mapper;
 
-use TheIconic\NameParser\Part\Salutation;
-use TheIconic\NameParser\Part\Firstname;
-use TheIconic\NameParser\Part\Lastname;
+use CodeByZach\NameParser\Mapper\FirstnameMapper;
+use CodeByZach\NameParser\Part\Firstname;
+use CodeByZach\NameParser\Part\Lastname;
+use CodeByZach\NameParser\Part\Salutation;
 
-class FirstnameMapperTest extends AbstractMapperTest
+class FirstnameMapperTest extends AbstractMapperTestCase
 {
     /**
-     * @return array
+     * @return array<int, array<string, mixed>>
      */
-    public function provider()
+    public static function provider(): array
     {
         return [
             [
@@ -56,12 +57,12 @@ class FirstnameMapperTest extends AbstractMapperTest
                 'expectation' => [
                     new Firstname('Alfonso'),
                     new Salutation('Mr'),
-                ]
-            ]
+                ],
+            ],
         ];
     }
 
-    protected function getMapper()
+    protected function getMapper(): FirstnameMapper
     {
         return new FirstnameMapper();
     }

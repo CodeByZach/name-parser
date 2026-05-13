@@ -1,18 +1,18 @@
 <?php
 
-namespace TheIconic\NameParser\Mapper;
+namespace Tests\CodeByZach\NameParser\Mapper;
 
-use TheIconic\NameParser\Language\English;
-use TheIconic\NameParser\Part\Initial;
-use TheIconic\NameParser\Part\Salutation;
-use TheIconic\NameParser\Part\Lastname;
+use CodeByZach\NameParser\Mapper\InitialMapper;
+use CodeByZach\NameParser\Part\Initial;
+use CodeByZach\NameParser\Part\Lastname;
+use CodeByZach\NameParser\Part\Salutation;
 
-class InitialMapperTest extends AbstractMapperTest
+class InitialMapperTest extends AbstractMapperTestCase
 {
     /**
-     * @return array
+     * @return array<int, array<string, mixed>>
      */
-    public function provider()
+    public static function provider(): array
     {
         return [
             [
@@ -54,17 +54,17 @@ class InitialMapperTest extends AbstractMapperTest
             [
                 'input' => [
                     'James',
-                    'B'
+                    'B',
                 ],
                 'expectation' => [
                     'James',
-                    'B'
+                    'B',
                 ],
             ],
             [
                 'input' => [
                     'James',
-                    'B'
+                    'B',
                 ],
                 'expectation' => [
                     'James',
@@ -72,7 +72,7 @@ class InitialMapperTest extends AbstractMapperTest
                 ],
                 'arguments' => [
                     2,
-                    true
+                    true,
                 ],
             ],
             [
@@ -83,8 +83,8 @@ class InitialMapperTest extends AbstractMapperTest
                 'expectation' => [
                     new Initial('J'),
                     new Initial('M'),
-                    'Walker'
-                ]
+                    'Walker',
+                ],
             ],
             [
                 'input' => [
@@ -93,16 +93,16 @@ class InitialMapperTest extends AbstractMapperTest
                 ],
                 'expectation' => [
                     'JM',
-                    'Walker'
+                    'Walker',
                 ],
                 'arguments' => [
-                    1
-                ]
-            ]
+                    1,
+                ],
+            ],
         ];
     }
 
-    protected function getMapper($maxCombined = 2, $matchLastPart = false)
+    protected function getMapper(int $maxCombined = 2, bool $matchLastPart = false): InitialMapper
     {
         return new InitialMapper($maxCombined, $matchLastPart);
     }
